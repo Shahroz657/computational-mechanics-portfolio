@@ -13,6 +13,7 @@ dependencies = [
   "meshio>=5.3",
   "cadquery>=2.4",
   "pyyaml>=6.0",
+  "tabulate>=0.9",
 ]
 
 [project.optional-dependencies]
