@@ -24,7 +24,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y calculix-ccx libglu1-mesa libxrender1 libxcursor1 libxft2 libxinerama1
-          ccx -v
+          ccx -v || true   # ccx prints its version and then exits 201
       - name: Install the package
         run: pip install -e ".[dev]"
       - name: Unit and integration tests
