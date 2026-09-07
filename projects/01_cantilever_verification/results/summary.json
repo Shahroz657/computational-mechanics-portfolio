@@ -1,0 +1,41 @@
+{
+  "inputs": {
+    "L": 0.4,
+    "B": 0.02,
+    "H": 0.02,
+    "E": 200000000000.0,
+    "nu": 0.3,
+    "P": 500.0,
+    "I": 1.3333333333333335e-08,
+    "kappa": 0.8496732026143791
+  },
+  "reference": {
+    "u_tip_euler_mm": 4.0,
+    "u_tip_timoshenko_mm": 4.00765,
+    "sigma_root_MPa": 149.99999999999997
+  },
+  "best_run": {
+    "etype": "C3D20R",
+    "n": 6.0,
+    "elements": 4320.0,
+    "nodes": 21973.0,
+    "dofs": 65919.0,
+    "u_tip_mm": 3.9930434586466164,
+    "u_over_timoshenko": 0.9963553350833073,
+    "u_over_euler": 0.9982608646616541,
+    "x_check_m": 0.04,
+    "sxx_fe_MPa": 134.9953846153846,
+    "sxx_theory_MPa": 135.0,
+    "sxx_err_pct": -0.0034188034188085132,
+    "reaction_z_N": 500.0,
+    "equilibrium_err": 0.0,
+    "solve_s": 2.775808811187744
+  },
+  "checks": {
+    "equilibrium: sum of clamp reactions equals applied load (all runs, < 1e-6)": true,
+    "converged C3D20R tip deflection within 1 % of Timoshenko": true,
+    "converged C3D20R bending stress within 2 % of M c / I at x = 2H": true,
+    "quadratic elements converge monotonically (C3D20R)": true,
+    "shear locking reproduced: single-layer C3D8 under-predicts deflection by > 20 %": true
+  }
+}

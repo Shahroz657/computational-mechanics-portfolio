@@ -1,0 +1,29 @@
+[project]
+name = "fealib"
+version = "0.1.0"
+description = "Scripted FEA workflows (Gmsh + CalculiX + Python) with analytical verification - Muhammad Shahroz portfolio"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "sympy>=1.12",
+  "pandas>=2.0",
+  "matplotlib>=3.8",
+  "gmsh>=4.12",
+  "meshio>=5.3",
+  "cadquery>=2.4",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "rainflow>=3.1"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["fealib"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

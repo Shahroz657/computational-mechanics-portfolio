@@ -1,0 +1,162 @@
+{
+  "inputs": {
+    "L": 0.4,
+    "B": 0.02,
+    "H": 0.02,
+    "I": 1.3333333333333335e-08,
+    "MPa_per_N": 0.29999999999999993,
+    "S_ut_MPa": 585.0,
+    "S_y_MPa": 310.0,
+    "finish": "machined",
+    "loading": "bending",
+    "reliability": 0.9,
+    "fs_Hz": 200.0,
+    "block_s": 60.0,
+    "P_mean_N": 150.0,
+    "P1_N": 200.0,
+    "f1_Hz": 4.0,
+    "P2_N": 120.0,
+    "f2_Hz": 0.3,
+    "noise_sigma_N": 40.0,
+    "ma_window": 5,
+    "seed": 7
+  },
+  "sn_curve": {
+    "marin": {
+      "k_a": 0.8334513173447641,
+      "k_b": 0.920700671765372,
+      "k_c": 1.0,
+      "k_d": 1.0,
+      "k_e": 0.897,
+      "k_f": 1.0,
+      "d_e_mm": 16.16
+    },
+    "S_e_prime_MPa": 292.5,
+    "S_e_MPa": 201.33394849136306,
+    "f": 0.8672584838362803,
+    "S_1e3_MPa": 507.3462130442239,
+    "a_MPa": 1278.4738084116857,
+    "b": -0.133795804063678
+  },
+  "history": {
+    "samples": 12000,
+    "load_min_N": -202.27453435780342,
+    "load_max_N": 511.56020418497894,
+    "stress_min_MPa": -60.682360307341014,
+    "stress_max_MPa": 153.46806125549364
+  },
+  "rainflow": {
+    "reversals": 2166,
+    "counted_ranges": 1090,
+    "cycles_own": 1082.5,
+    "cycles_package": 1082.5,
+    "package_version": "3.2.0",
+    "max_range_MPa": 214.15042156283465,
+    "bin_MPa": 10.0,
+    "bins_identical": true,
+    "astm_example_counts": {
+      "3.0": 0.5,
+      "4.0": 1.5,
+      "8.0": 1.0,
+      "9.0": 0.5,
+      "6.0": 0.5
+    }
+  },
+  "damage": {
+    "goodman_cutoff": {
+      "damage_per_block": 0.0,
+      "life_blocks": Infinity,
+      "life_hours": Infinity,
+      "life_cycles": Infinity,
+      "sigma_ar_max_MPa": 116.29811888361178,
+      "cycles_above_S_e": 0.0
+    },
+    "goodman_extended": {
+      "damage_per_block": 2.407136843103702e-07,
+      "life_blocks": 4154313.0498165824,
+      "life_hours": 69238.55083027638,
+      "life_cycles": 4497043876.426451,
+      "sigma_ar_max_MPa": 116.29811888361178,
+      "cycles_above_S_e": 0.0
+    },
+    "gerber_cutoff": {
+      "damage_per_block": 0.0,
+      "life_blocks": Infinity,
+      "life_hours": Infinity,
+      "life_cycles": Infinity,
+      "sigma_ar_max_MPa": 107.75288237082475,
+      "cycles_above_S_e": 0.0
+    },
+    "gerber_extended": {
+      "damage_per_block": 1.3687454178886321e-07,
+      "life_blocks": 7305960.5309404945,
+      "life_hours": 121766.00884900824,
+      "life_cycles": 7908702274.743085,
+      "sigma_ar_max_MPa": 107.75288237082475,
+      "cycles_above_S_e": 0.0
+    },
+    "soderberg_cutoff": {
+      "damage_per_block": 0.0,
+      "life_blocks": Infinity,
+      "life_hours": Infinity,
+      "life_cycles": Infinity,
+      "sigma_ar_max_MPa": 125.91963230866418,
+      "cycles_above_S_e": 0.0
+    },
+    "soderberg_extended": {
+      "damage_per_block": 4.4946001930213244e-07,
+      "life_blocks": 2224891.9971851557,
+      "life_hours": 37081.53328641926,
+      "life_cycles": 2408445586.952931,
+      "sigma_ar_max_MPa": 125.91963230866418,
+      "cycles_above_S_e": 0.0
+    },
+    "swt_cutoff": {
+      "damage_per_block": 0.0,
+      "life_blocks": Infinity,
+      "life_hours": Infinity,
+      "life_cycles": Infinity,
+      "sigma_ar_max_MPa": 128.18980071420444,
+      "cycles_above_S_e": 0.0
+    },
+    "swt_extended": {
+      "damage_per_block": 6.911050058800466e-07,
+      "life_blocks": 1446958.119955461,
+      "life_hours": 24115.96866592435,
+      "life_cycles": 1566332164.8517866,
+      "sigma_ar_max_MPa": 128.18980071420444,
+      "cycles_above_S_e": 0.0
+    }
+  },
+  "spread_max_over_min_life": 5.049185895695018,
+  "constant_amplitude": [
+    {
+      "amplitude_MPa": 200.0,
+      "infinite_life": false,
+      "cycles_counted": 40.0,
+      "N_curve": 1050939.6337452442,
+      "life_cycles": 1050939.6337452442,
+      "rel_diff": 0.0
+    },
+    {
+      "amplitude_MPa": 300.0,
+      "infinite_life": true,
+      "cycles_counted": 40.0,
+      "N_curve": 50752.60381544229,
+      "life_cycles": 50752.6038154423,
+      "rel_diff": 2.220446049250313e-16
+    }
+  ],
+  "runtime_s": 0.6158006668556482,
+  "checks": {
+    "own rainflow reproduces the ASTM E1049-85 worked example (ranges 3/4/6/8/9 -> 0.5/1.5/0.5/1.0/0.5 cycles)": true,
+    "rainflow total cycle count equals the rainflow package (|difference| < 1e-9)": true,
+    "rainflow 10 MPa range histogram identical to the rainflow package in every bin": true,
+    "constant-amplitude 200 MPa cosine: rainflow + Miner life equals N(200 MPa) within 1e-9 (Basquin line, no cut-off)": true,
+    "constant-amplitude 300 MPa cosine: rainflow + Miner life equals N(300 MPa) within 1e-9 (with the S_e cut-off)": true,
+    "endurance-limit screening: every corrected amplitude is below S_e, so the cut-off variant gives D = 0 for all methods": true,
+    "Miner damage per block (Basquin line extended) is positive and finite for all four methods": true,
+    "Goodman is at least as conservative as Gerber (life_goodman <= life_gerber)": true,
+    "all four mean-stress methods agree within a factor of 10 (max/min life)": true
+  }
+}

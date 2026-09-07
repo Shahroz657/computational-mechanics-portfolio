@@ -1,0 +1,123 @@
+{
+  "ai_as_submitted": {
+    "mesh_size_mm": 10.0,
+    "elements": 794,
+    "nodes": 350,
+    "sigma_max_MPa": 85.77719461600152,
+    "node_max": 10,
+    "location_max": [
+      0.0,
+      10.0,
+      20.0
+    ],
+    "load_node": 14,
+    "deflection_mm": 1.73593e-06,
+    "reaction_z_N": 500.0,
+    "safety_factor": 5.012987448761638
+  },
+  "reference": {
+    "elements": 1280,
+    "nodes": 7265,
+    "element_type": "C3D20R",
+    "sigma_2H_top_fibre_MPa": 134.9957777777778,
+    "sigma_root_beam_theory_MPa": 150.0,
+    "deflection_mm": 3.992185538461539,
+    "deflection_theory_mm": 4.00765,
+    "reaction_z_N": 500.0,
+    "safety_factor_yield": 1.8333333333333333
+  },
+  "theory": {
+    "sigma_root_MPa": 150.0,
+    "sigma_2H_MPa": 135.0,
+    "u_tip_mm": 4.00765
+  },
+  "refinement": [
+    {
+      "mesh_size_mm": 10.0,
+      "elements": 794,
+      "nodes": 350,
+      "sigma_load_node_MPa": 13.603908474646836,
+      "sigma_clamp_face_max_MPa": 85.77719461600152,
+      "sigma_reported_max_MPa": 85.77719461600152,
+      "sigma_2H_top_fibre_MPa": 32.923425,
+      "deflection_mm": 1.73593e-06,
+      "reaction_z_N": 500.0
+    },
+    {
+      "mesh_size_mm": 6.0,
+      "elements": 4403,
+      "nodes": 1362,
+      "sigma_load_node_MPa": 32.48250236668428,
+      "sigma_clamp_face_max_MPa": 105.43292874646599,
+      "sigma_reported_max_MPa": 121.72010047347932,
+      "sigma_2H_top_fibre_MPa": 87.84248,
+      "deflection_mm": 3.17826e-06,
+      "reaction_z_N": 500.0
+    },
+    {
+      "mesh_size_mm": 4.0,
+      "elements": 12871,
+      "nodes": 3417,
+      "sigma_load_node_MPa": 27.852478009925942,
+      "sigma_clamp_face_max_MPa": 105.03016191334417,
+      "sigma_reported_max_MPa": 132.65905527991407,
+      "sigma_2H_top_fibre_MPa": 106.03983333333333,
+      "deflection_mm": 3.52461e-06,
+      "reaction_z_N": 500.0
+    },
+    {
+      "mesh_size_mm": 2.5,
+      "elements": 49556,
+      "nodes": 11279,
+      "sigma_load_node_MPa": 56.517353298926466,
+      "sigma_clamp_face_max_MPa": 116.64599380087087,
+      "sigma_reported_max_MPa": 138.5438283738959,
+      "sigma_2H_top_fibre_MPa": 119.70666666666665,
+      "deflection_mm": 3.80562e-06,
+      "reaction_z_N": 500.0
+    }
+  ],
+  "checks": [
+    {
+      "check": "C1 unit consistency: E / sigma_max between 1e2 and 1e5 for a metal at working stress",
+      "passed": false,
+      "evidence": "E = 2e+11 with stresses in MPa gives E/sigma = 2.33e+09; deflection 0.00000 mm vs 4.008 mm expected (factor 2308647)"
+    },
+    {
+      "check": "C2 global equilibrium: clamp reaction equals applied load within 1e-6",
+      "passed": true,
+      "evidence": "reaction 500 N vs 500.0 N applied (necessary, not sufficient)"
+    },
+    {
+      "check": "C3 mesh convergence of the reported quantity: < 5 % change under 4x refinement",
+      "passed": false,
+      "evidence": "reported max stress 85.8 -> 138.5 MPa from 10 to 2.5 mm elements (+62 %)"
+    },
+    {
+      "check": "C4 reported maximum is not read at a point load or a constraint edge (singular locations)",
+      "passed": false,
+      "evidence": "max at node 10 at x=0, y=10, z=20 mm; load node = 14 -> clamp face"
+    },
+    {
+      "check": "C5 hand-calculation plausibility: sigma_max within 25 % of M c / I and deflection within 20 % of beam theory",
+      "passed": false,
+      "evidence": "sigma_max 85.8 MPa vs M c / I = 150.0 MPa; deflection 0.00000 mm vs 4.008 mm"
+    },
+    {
+      "check": "C6 element formulation suited to bending: no linear tetrahedra (C3D4) in a bending-dominated part",
+      "passed": false,
+      "evidence": "C3D4 used; on the same mesh sizes the top-fibre stress at x = 2H reaches only 120 MPa of the 135 MPa expected (see refinement table)"
+    },
+    {
+      "check": "C7 correct strength criterion: static safety factor of a ductile part is based on yield, not ultimate",
+      "passed": false,
+      "evidence": "SF = S_ut / sigma = 5.01 reported; with S_y = 275 MPa and the beam-theory root stress the factor is 1.83"
+    },
+    {
+      "check": "C8 load application: resultant applied as a distributed traction or coupling, not a single nodal force on a solid mesh",
+      "passed": false,
+      "evidence": "single *CLOAD on node 14; stress at that node grows 14 -> 57 MPa with refinement (singular)"
+    }
+  ],
+  "n_failed": 7
+}

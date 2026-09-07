@@ -1,0 +1,453 @@
+{
+  "inputs": {
+    "L": 0.4,
+    "B": 0.02,
+    "H": 0.01,
+    "E": 200000000000.0,
+    "nu": 0.3,
+    "rho": 7850.0,
+    "A": 0.0002,
+    "I_weak": 1.666666666666667e-09,
+    "I_strong": 6.666666666666668e-09,
+    "G": 76923076923.07692,
+    "kappa": 0.8496732026143791,
+    "J_torsion": 4.5736335450047555e-09,
+    "I_polar": 8.333333333333334e-09,
+    "element": "C3D20R",
+    "meshes": [
+      [
+        40,
+        2,
+        1
+      ],
+      [
+        80,
+        4,
+        2
+      ],
+      [
+        160,
+        8,
+        4
+      ]
+    ],
+    "n_modes": 10,
+    "n_buckling_modes": 4,
+    "reference_pressure_Pa": 10000000.0,
+    "P_ref_N": 2000.0
+  },
+  "theory": {
+    "f_weak_EB_Hz": [
+      50.96129416174275,
+      319.36897812300964,
+      894.24238795231,
+      1752.3581737344477,
+      2896.773623555496
+    ],
+    "f_strong_EB_Hz": [
+      101.9225883234855,
+      638.7379562460193,
+      1788.48477590462,
+      3504.7163474688955,
+      5793.547247110992
+    ],
+    "f_weak_timoshenko_Hz": [
+      50.9362734250687,
+      318.28031955320756,
+      887.0355979204173,
+      1726.5638156980212,
+      2829.7550963693584
+    ],
+    "f_strong_timoshenko_Hz": [
+      101.72294870597798,
+      630.168196994438,
+      1733.1145878274403,
+      3312.875105093535,
+      5314.2298711169415
+    ],
+    "f_torsion_Hz": [
+      1449.4218970304528,
+      4348.265691091358,
+      7247.109485152264
+    ],
+    "f_axial_Hz": [
+      3154.71540703168,
+      9464.14622109504,
+      15773.5770351584
+    ],
+    "P_cr_weak_N": [
+      5140.418958900707,
+      46263.77063010636,
+      128510.47397251768,
+      251880.52898613462
+    ],
+    "P_cr_strong_N": [
+      20561.67583560283,
+      185055.08252042544,
+      514041.8958900707,
+      1007522.1159445385
+    ]
+  },
+  "finest_mesh": {
+    "mesh": [
+      160,
+      8,
+      4
+    ],
+    "elements": 5120,
+    "nodes": 26681,
+    "dofs": 80043,
+    "modal_solve_s": 7.214570045471191,
+    "buckle_solve_s": 7.243947744369507
+  },
+  "engineering": {
+    "axial_stress_at_Pcr1_MPa": 25.750549999999997,
+    "slenderness_ratio_weak": 277.1281292110204,
+    "kappa_G_A_N": 13071895.4248366
+  },
+  "modal_finest": [
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 1,
+      "classification": "bending z (weak)",
+      "rank": 1,
+      "f_FE_Hz": 51.05579,
+      "f_theory_Hz": 50.96129416174275,
+      "theory": "Euler-Bernoulli",
+      "err_pct": 0.18542668472534873,
+      "f_timoshenko_Hz": 50.9362734250687,
+      "err_vs_timoshenko_pct": 0.23463941685314255
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 2,
+      "classification": "bending y (strong)",
+      "rank": 1,
+      "f_FE_Hz": 101.8807,
+      "f_theory_Hz": 101.9225883234855,
+      "theory": "Euler-Bernoulli",
+      "err_pct": -0.041098174776083886,
+      "f_timoshenko_Hz": 101.72294870597798,
+      "err_vs_timoshenko_pct": 0.15507935626009792
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 3,
+      "classification": "bending z (weak)",
+      "rank": 2,
+      "f_FE_Hz": 319.0337,
+      "f_theory_Hz": 319.36897812300964,
+      "theory": "Euler-Bernoulli",
+      "err_pct": -0.10498143087663715,
+      "f_timoshenko_Hz": 318.28031955320756,
+      "err_vs_timoshenko_pct": 0.23670343420856851
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 4,
+      "classification": "bending y (strong)",
+      "rank": 2,
+      "f_FE_Hz": 631.1838,
+      "f_theory_Hz": 638.7379562460193,
+      "theory": "Euler-Bernoulli",
+      "err_pct": -1.182669069866527,
+      "f_timoshenko_Hz": 630.168196994438,
+      "err_vs_timoshenko_pct": 0.16116379887241983
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 5,
+      "classification": "bending z (weak)",
+      "rank": 3,
+      "f_FE_Hz": 889.2558,
+      "f_theory_Hz": 894.24238795231,
+      "theory": "Euler-Bernoulli",
+      "err_pct": -0.5576326977441246,
+      "f_timoshenko_Hz": 887.0355979204173,
+      "err_vs_timoshenko_pct": 0.2502945862361977
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 6,
+      "classification": "torsion x",
+      "rank": 1,
+      "f_FE_Hz": 1457.184,
+      "f_theory_Hz": 1449.4218970304528,
+      "theory": "Saint-Venant torsion",
+      "err_pct": 0.5355309579253653,
+      "f_timoshenko_Hz": NaN,
+      "err_vs_timoshenko_pct": NaN
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 7,
+      "classification": "bending z (weak)",
+      "rank": 4,
+      "f_FE_Hz": 1731.309,
+      "f_theory_Hz": 1752.3581737344477,
+      "theory": "Euler-Bernoulli",
+      "err_pct": -1.201191288969761,
+      "f_timoshenko_Hz": 1726.5638156980212,
+      "err_vs_timoshenko_pct": 0.2748339944828697
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 8,
+      "classification": "bending y (strong)",
+      "rank": 3,
+      "f_FE_Hz": 1736.186,
+      "f_theory_Hz": 1788.48477590462,
+      "theory": "Euler-Bernoulli",
+      "err_pct": -2.9241946372267646,
+      "f_timoshenko_Hz": 1733.1145878274403,
+      "err_vs_timoshenko_pct": 0.17721922105622395
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 9,
+      "classification": "bending z (weak)",
+      "rank": 5,
+      "f_FE_Hz": 2838.489,
+      "f_theory_Hz": 2896.773623555496,
+      "theory": "Euler-Bernoulli",
+      "err_pct": -2.012053102166738,
+      "f_timoshenko_Hz": 2829.7550963693584,
+      "err_vs_timoshenko_pct": 0.3086452125078752
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 10,
+      "classification": "axial x",
+      "rank": 1,
+      "f_FE_Hz": 3158.271,
+      "f_theory_Hz": 3154.71540703168,
+      "theory": "axial rod",
+      "err_pct": 0.11270724961100634,
+      "f_timoshenko_Hz": NaN,
+      "err_vs_timoshenko_pct": NaN
+    }
+  ],
+  "modal_convergence": [
+    {
+      "mesh": "40x2x1",
+      "elements": 80,
+      "dofs": 2319,
+      "f_weak1_Hz": 51.151,
+      "err_weak1_pct": 0.373,
+      "f_weak2_Hz": 319.728,
+      "err_weak2_pct": 0.112,
+      "f_weak3_Hz": 891.612,
+      "err_weak3_pct": -0.294,
+      "f_strong1_Hz": 101.947,
+      "err_strong1_pct": 0.024,
+      "solve_s": 0.08
+    },
+    {
+      "mesh": "80x4x2",
+      "elements": 640,
+      "dofs": 12591,
+      "f_weak1_Hz": 51.071,
+      "err_weak1_pct": 0.215,
+      "f_weak2_Hz": 319.136,
+      "err_weak2_pct": -0.073,
+      "f_weak3_Hz": 889.574,
+      "err_weak3_pct": -0.522,
+      "f_strong1_Hz": 101.902,
+      "err_strong1_pct": -0.02,
+      "solve_s": 0.62
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "f_weak1_Hz": 51.056,
+      "err_weak1_pct": 0.185,
+      "f_weak2_Hz": 319.034,
+      "err_weak2_pct": -0.105,
+      "f_weak3_Hz": 889.256,
+      "err_weak3_pct": -0.558,
+      "f_strong1_Hz": 101.881,
+      "err_strong1_pct": -0.041,
+      "solve_s": 7.21
+    }
+  ],
+  "buckling_finest": [
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 1,
+      "classification": "bending z (weak)",
+      "rank": 1,
+      "buckling_factor": 2.575055,
+      "P_cr_FE_N": 5150.11,
+      "P_cr_theory_N": 5140.418958900707,
+      "err_pct": 0.18852628894211304,
+      "P_cr_engesser_N": 5138.398324607993,
+      "err_vs_engesser_pct": 0.22792463044210975
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 2,
+      "classification": "bending y (strong)",
+      "rank": 1,
+      "buckling_factor": 10.27571,
+      "P_cr_FE_N": 20551.420000000002,
+      "P_cr_theory_N": 20561.67583560283,
+      "err_pct": -0.04987840332094649,
+      "P_cr_engesser_N": 20529.38376774135,
+      "err_vs_engesser_pct": 0.10733995967905283
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 3,
+      "classification": "bending z (weak)",
+      "rank": 2,
+      "buckling_factor": 23.08468,
+      "P_cr_FE_N": 46169.36,
+      "P_cr_theory_N": 46263.77063010636,
+      "err_pct": -0.2040703315369636,
+      "P_cr_engesser_N": 46100.61233624645,
+      "err_vs_engesser_pct": 0.1491252724630263
+    },
+    {
+      "mesh": "160x8x4",
+      "elements": 5120,
+      "dofs": 80043,
+      "mode": 4,
+      "classification": "bending z (weak)",
+      "rank": 3,
+      "buckling_factor": 63.62631,
+      "P_cr_FE_N": 127252.62,
+      "P_cr_theory_N": 128510.47397251768,
+      "err_pct": -0.9787949056873583,
+      "P_cr_engesser_N": 127259.38047984478,
+      "err_vs_engesser_pct": -0.005312362687367614
+    }
+  ],
+  "buckling_convergence": [
+    {
+      "mesh": "40x2x1",
+      "dofs": 2319,
+      "P_cr1_N": 5159.7,
+      "err1_pct": 0.376,
+      "P_cr2_N": 20564.3,
+      "err2_pct": 0.013,
+      "P_cr3_N": 46275.2,
+      "err3_pct": 0.025,
+      "P_cr4_N": 127651.0,
+      "err4_pct": -0.669,
+      "solve_s": 0.06
+    },
+    {
+      "mesh": "80x4x2",
+      "dofs": 12591,
+      "P_cr1_N": 5151.6,
+      "err1_pct": 0.218,
+      "P_cr2_N": 20555.6,
+      "err2_pct": -0.03,
+      "P_cr3_N": 46183.9,
+      "err3_pct": -0.173,
+      "P_cr4_N": 127298.8,
+      "err4_pct": -0.943,
+      "solve_s": 0.53
+    },
+    {
+      "mesh": "160x8x4",
+      "dofs": 80043,
+      "P_cr1_N": 5150.1,
+      "err1_pct": 0.189,
+      "P_cr2_N": 20551.4,
+      "err2_pct": -0.05,
+      "P_cr3_N": 46169.4,
+      "err3_pct": -0.204,
+      "P_cr4_N": 127252.6,
+      "err4_pct": -0.979,
+      "solve_s": 7.24
+    }
+  ],
+  "buckling_reference_load_study": [
+    {
+      "p_ref_Pa": 1.0,
+      "P_ref_N": 0.0002,
+      "lambda_1": 22234090.0,
+      "mode1_classification": "bending z (weak)",
+      "P_cr1_FE_N": 4446.818,
+      "err_vs_euler_pct": -13.493082265205786
+    },
+    {
+      "p_ref_Pa": 100.0,
+      "P_ref_N": 0.02,
+      "lambda_1": 257932.8,
+      "mode1_classification": "bending z (weak)",
+      "P_cr1_FE_N": 5158.656000000001,
+      "err_vs_euler_pct": 0.3547773293403605
+    },
+    {
+      "p_ref_Pa": 10000.0,
+      "P_ref_N": 2.0,
+      "lambda_1": 2575.805,
+      "mode1_classification": "bending z (weak)",
+      "P_cr1_FE_N": 5151.61,
+      "err_vs_euler_pct": 0.2177067898311063
+    },
+    {
+      "p_ref_Pa": 1000000.0,
+      "P_ref_N": 200.0,
+      "lambda_1": 25.75804,
+      "mode1_classification": "bending z (weak)",
+      "P_cr1_FE_N": 5151.608,
+      "err_vs_euler_pct": 0.2176678824965974
+    },
+    {
+      "p_ref_Pa": 10000000.0,
+      "P_ref_N": 2000.0,
+      "lambda_1": 2.575804,
+      "mode1_classification": "bending z (weak)",
+      "P_cr1_FE_N": 5151.608000000001,
+      "err_vs_euler_pct": 0.21766788249661512
+    },
+    {
+      "p_ref_Pa": 100000000.0,
+      "P_ref_N": 20000.0,
+      "lambda_1": 1.027778,
+      "mode1_classification": "bending y (strong)",
+      "P_cr1_FE_N": 20555.56,
+      "err_vs_euler_pct": 299.8810245691698
+    }
+  ],
+  "checks": {
+    "finest mesh: first three weak-axis bending frequencies within 1.5 % of Euler-Bernoulli": true,
+    "finest mesh: first strong-axis bending frequency within 1.5 % of Euler-Bernoulli": true,
+    "mode-1 frequency converges monotonically with mesh refinement (steps of one sign, shrinking)": true,
+    "mode-1 buckling load within 2 % of Euler fixed-free P_cr = pi^2 E I / (4 L^2)": true,
+    "mode-1 buckling is about the weak axis (classified as z motion)": true,
+    "buckling factor independent of the reference-load magnitude (10 kPa - 10 MPa agree within 0.1 %)": true,
+    "all 10 modes on the finest mesh classified unambiguously (none 'other')": true
+  },
+  "runtime_s": 20.307780750095844
+}

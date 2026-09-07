@@ -1,0 +1,142 @@
+{
+  "requirements": {
+    "F_N": 600.0,
+    "S_y_MPa": 355.0,
+    "SF_required": 2.0,
+    "deflection_max_mm": 0.6,
+    "t_range_mm": [
+      5.0,
+      12.0
+    ],
+    "R_range_mm": [
+      2.0,
+      10.0
+    ]
+  },
+  "rsm": {
+    "stress_R2": 0.9989076504156628,
+    "stress_max_resid": 0.03640985617331893,
+    "deflection_R2": 0.9995602694800854,
+    "deflection_max_resid": 0.022294582089045223,
+    "mass_R2": 1.0
+  },
+  "surrogate_optimum": {
+    "t": 7.190417518899823,
+    "R": 10.0,
+    "mass_kg": 0.5092443966116872
+  },
+  "verified_optimum": {
+    "t": 7.19,
+    "R": 10.0,
+    "size": 6.0,
+    "fillet_div": 6,
+    "elements": 16234,
+    "nodes": 27094,
+    "mass_kg": 0.509215315915468,
+    "sigma_fillet_MPa": 138.4857064891199,
+    "sigma_fixed_edge_MPa": 31.052642039659037,
+    "sigma_global_max_MPa": 138.4857064891199,
+    "SF": 2.5634414482182715,
+    "deflection_mm": 0.5900313838383838,
+    "reaction_z_N": 600.0,
+    "equilibrium_err": 0.0,
+    "solve_s": 5.0089709758758545
+  },
+  "trimmed": false,
+  "baseline": {
+    "t": 10.0,
+    "R": 2.0,
+    "size": 6.0,
+    "fillet_div": 6,
+    "elements": 20280,
+    "nodes": 34041,
+    "mass_kg": 0.6968490164395408,
+    "sigma_fillet_MPa": 126.31763524539213,
+    "sigma_fixed_edge_MPa": 24.379308845156743,
+    "sigma_global_max_MPa": 126.31763524539213,
+    "SF": 2.8103756004484723,
+    "deflection_mm": 0.26515926213592234,
+    "reaction_z_N": 600.0,
+    "equilibrium_err": 0.0,
+    "solve_s": 6.594151020050049
+  },
+  "mass_saving_pct": 26.926019280727797,
+  "fixed_edge_stress_growth_pct_coarsest_to_finest": 21.31069198961617,
+  "convergence": [
+    {
+      "t": 7.19,
+      "R": 10.0,
+      "size": 8.0,
+      "fillet_div": 4,
+      "elements": 7754,
+      "nodes": 13855,
+      "mass_kg": 0.509215315915468,
+      "sigma_fillet_MPa": 137.21409409669653,
+      "sigma_fixed_edge_MPa": 28.615154677679243,
+      "sigma_global_max_MPa": 137.21409409669653,
+      "SF": 2.5871977826842407,
+      "deflection_mm": 0.5894154931506849,
+      "reaction_z_N": 600.0,
+      "equilibrium_err": 0.0,
+      "solve_s": 1.3547718524932861
+    },
+    {
+      "t": 7.19,
+      "R": 10.0,
+      "size": 6.0,
+      "fillet_div": 6,
+      "elements": 16234,
+      "nodes": 27094,
+      "mass_kg": 0.509215315915468,
+      "sigma_fillet_MPa": 138.4857064891199,
+      "sigma_fixed_edge_MPa": 31.052642039659037,
+      "sigma_global_max_MPa": 138.4857064891199,
+      "SF": 2.5634414482182715,
+      "deflection_mm": 0.5900313838383838,
+      "reaction_z_N": 600.0,
+      "equilibrium_err": 0.0,
+      "solve_s": 4.568511009216309
+    },
+    {
+      "t": 7.19,
+      "R": 10.0,
+      "size": 4.0,
+      "fillet_div": 8,
+      "elements": 35785,
+      "nodes": 56999,
+      "mass_kg": 0.509215315915468,
+      "sigma_fillet_MPa": 141.19394540956185,
+      "sigma_fixed_edge_MPa": 32.9627920670066,
+      "sigma_global_max_MPa": 141.19394540956185,
+      "SF": 2.514272116769951,
+      "deflection_mm": 0.5903404965986393,
+      "reaction_z_N": 600.0,
+      "equilibrium_err": 0.0,
+      "solve_s": 18.826760292053223
+    },
+    {
+      "t": 7.19,
+      "R": 10.0,
+      "size": 3.0,
+      "fillet_div": 10,
+      "elements": 66151,
+      "nodes": 102062,
+      "mass_kg": 0.509215315915468,
+      "sigma_fillet_MPa": 140.08817740016616,
+      "sigma_fixed_edge_MPa": 34.71324215339171,
+      "sigma_global_max_MPa": 140.08817740016616,
+      "SF": 2.534118200324155,
+      "deflection_mm": 0.5904825402298851,
+      "reaction_z_N": 600.0,
+      "equilibrium_err": 0.0,
+      "solve_s": 101.81762838363647
+    }
+  ],
+  "checks": {
+    "equilibrium: fixed-face reaction equals the applied load in every run (< 1e-6)": true,
+    "response surfaces fit the FE data (R2 > 0.99 for stress and deflection)": true,
+    "verified optimum meets SF >= 2.0 and deflection <= limit in a direct FE run": true,
+    "verified optimum is lighter than the baseline design": true,
+    "fillet stress converged: < 3 % change between the two finest meshes": true
+  }
+}

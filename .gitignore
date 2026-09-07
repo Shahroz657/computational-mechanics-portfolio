@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.DS_Store
+# CalculiX / Gmsh scratch output (results that matter are committed under results/)
+**/work/
+*.frd
+*.dat
+*.sta
+*.cvg
+*.12d
+*.msh
+spooles.out

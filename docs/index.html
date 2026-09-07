@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muhammad Shahroz · Computational Mechanics</title>
+<meta name="description" content="Scripted finite-element engineering in Python: Gmsh, CalculiX and CadQuery driven from code, every model verified against closed-form solutions with executable checks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f4f5f3;
+    --panel: #eaece9;
+    --ink: #161b20;
+    --ink-2: #4c5761;
+    --ink-3: #7d8791;
+    --rule: #cdd2d1;
+    --accent: #1f5fb4;
+    --accent-soft: #dbe7f7;
+    --pass: #0c7a2a;
+    --fail: #b3261e;
+    --display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #12161a; --panel: #1a2026; --ink: #e8ecef; --ink-2: #aab4bd; --ink-3: #76818b;
+      --rule: #2b333b; --accent: #6aa6f2; --accent-soft: #1c2d45; --pass: #4cc56e; --fail: #f08a84;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #12161a; --panel: #1a2026; --ink: #e8ecef; --ink-2: #aab4bd; --ink-3: #76818b;
+    --rule: #2b333b; --accent: #6aa6f2; --accent-soft: #1c2d45; --pass: #4cc56e; --fail: #f08a84;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 16px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover, a:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  img { max-width: 100%; height: auto; display: block; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.1; }
+  h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.005em; }
+  h3 { font-size: 24px; font-weight: 600; }
+  p { margin: 0; }
+  .prose { max-width: 66ch; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-3); font-weight: 500;
+  }
+  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  /* ---------- title block ---------- */
+  .titleblock {
+    margin: 40px 0 0; border: 1.5px solid var(--ink); display: grid;
+    grid-template-columns: 1fr; background: var(--bg);
+  }
+  .tb-top { display: grid; grid-template-columns: 1.4fr 1fr; border-bottom: 1.5px solid var(--ink); }
+  .tb-name { padding: 26px 28px 22px; border-right: 1.5px solid var(--ink); }
+  .tb-name h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 700; letter-spacing: -0.01em; }
+  .tb-name p { margin-top: 10px; color: var(--ink-2); font-size: 17px; max-width: 40ch; }
+  .tb-title { padding: 26px 28px 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
+  .tb-title .big { font-family: var(--display); font-size: 26px; font-weight: 600; line-height: 1.15; }
+  .tb-links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 13px; }
+  .tb-links a::before { content: "→ "; color: var(--ink-3); }
+  .tb-fields { display: grid; grid-template-columns: repeat(6, 1fr); }
+  .tb-fields > div { padding: 10px 14px 12px; border-right: 1px solid var(--rule); min-width: 0; }
+  .tb-fields > div:last-child { border-right: 0; }
+  .tb-fields .eyebrow { display: block; margin-bottom: 3px; }
+  .tb-fields .val { font-family: var(--mono); font-size: 13px; color: var(--ink); overflow-wrap: anywhere; }
+  @media (max-width: 760px) {
+    .tb-top { grid-template-columns: 1fr; }
+    .tb-name { border-right: 0; border-bottom: 1.5px solid var(--ink); }
+    .tb-fields { grid-template-columns: repeat(2, 1fr); }
+    .tb-fields > div { border-bottom: 1px solid var(--rule); }
+    .tb-fields > div:nth-child(2n) { border-right: 0; }
+    .tb-fields > div:nth-last-child(-n+2) { border-bottom: 0; }
+  }
+
+  /* ---------- sections ---------- */
+  section { padding: 56px 0 8px; }
+  .section-head { display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline; padding-bottom: 14px; border-bottom: 1.5px solid var(--ink); margin-bottom: 28px; }
+  .section-head .eyebrow { padding-top: 6px; }
+  @media (max-width: 760px) { .section-head { grid-template-columns: 1fr; gap: 4px; } }
+  .lede { font-size: 19px; line-height: 1.5; color: var(--ink); max-width: 62ch; }
+  .lede + .lede { margin-top: 14px; }
+
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 34px; }
+  .three h3 { font-size: 20px; margin-bottom: 8px; }
+  .three p { color: var(--ink-2); font-size: 15px; }
+  @media (max-width: 760px) { .three { grid-template-columns: 1fr; gap: 20px; } }
+
+  .ledger { margin-top: 34px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .ledger > div { padding: 14px 16px 16px; border-right: 1px solid var(--rule); }
+  .ledger > div:last-child { border-right: 0; }
+  .ledger .num { font-family: var(--display); font-size: 34px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+  .ledger .lab { color: var(--ink-3); font-size: 13px; margin-top: 6px; }
+  @media (max-width: 760px) { .ledger { grid-template-columns: repeat(2, 1fr); } .ledger > div:nth-child(2n) { border-right: 0; } .ledger > div:nth-child(-n+2) { border-bottom: 1px solid var(--rule); } }
+
+  /* ---------- projects ---------- */
+  .project { display: grid; grid-template-columns: 1.05fr 1fr; gap: 36px; padding: 34px 0 38px; border-bottom: 1px solid var(--rule); }
+  .project:last-child { border-bottom: 0; }
+  .project .num { font-family: var(--display); font-size: 15px; font-weight: 600; color: var(--ink-3); letter-spacing: 0.04em; }
+  .project h3 { margin: 6px 0 12px; }
+  .project .q { color: var(--ink-2); font-size: 16px; max-width: 58ch; }
+  .facts { margin: 18px 0 0; display: grid; grid-template-columns: 112px 1fr; gap: 8px 14px; font-size: 14.5px; }
+  .facts dt { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); padding-top: 3px; }
+  .facts dd { margin: 0; color: var(--ink); }
+  .checks { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--pass); font-weight: 500; }
+  .checks::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--pass); display: inline-block; }
+  .checks.fail { color: var(--fail); } .checks.fail::before { background: var(--fail); }
+  .links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 13px; }
+  .links a::before { content: "→ "; color: var(--ink-3); }
+  figure { margin: 0; }
+  figure img { border: 1px solid var(--rule); background: #fcfcfb; }
+  figcaption { font-size: 13px; color: var(--ink-3); margin-top: 8px; line-height: 1.45; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .tag { font-family: var(--mono); font-size: 11.5px; padding: 2px 8px; border: 1px solid var(--rule); border-radius: 3px; color: var(--ink-2); background: var(--panel); }
+  @media (max-width: 860px) { .project { grid-template-columns: 1fr; gap: 22px; } }
+
+  /* ---------- pipeline ---------- */
+  .pipeline { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; border: 1px solid var(--rule); background: var(--panel); }
+  .step { padding: 14px 14px 16px; border-right: 1px solid var(--rule); position: relative; min-width: 0; }
+  .step:last-child { border-right: 0; }
+  .step .eyebrow { color: var(--accent); }
+  .step .what { font-family: var(--display); font-size: 18px; font-weight: 600; margin: 4px 0 6px; }
+  .step .how { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
+  @media (max-width: 960px) { .pipeline { grid-template-columns: repeat(4, 1fr); } .step:nth-child(4) { border-right: 0; } .step:nth-child(-n+4) { border-bottom: 1px solid var(--rule); } }
+  @media (max-width: 600px) { .pipeline { grid-template-columns: 1fr 1fr; } .step { border-right: 1px solid var(--rule) !important; border-bottom: 1px solid var(--rule); } .step:nth-child(2n) { border-right: 0 !important; } }
+  .fealib { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .fealib p { color: var(--ink-2); font-size: 15px; }
+  .fealib code { font-family: var(--mono); font-size: 13.5px; color: var(--ink); background: var(--panel); padding: 1px 5px; border-radius: 3px; }
+  @media (max-width: 760px) { .fealib { grid-template-columns: 1fr; } }
+
+  /* ---------- CAD gallery ---------- */
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 20px; }
+  .gallery figure img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+  .gallery figcaption strong { color: var(--ink); font-weight: 600; }
+  @media (max-width: 760px) { .gallery { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .gallery { grid-template-columns: 1fr; } }
+
+  /* ---------- background ---------- */
+  .bio { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; }
+  .bio dl { margin: 0; display: grid; grid-template-columns: 96px 1fr; gap: 10px 14px; font-size: 15px; }
+  .bio dt { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); padding-top: 3px; }
+  .bio dd { margin: 0; color: var(--ink); }
+  .bio dd .sub { color: var(--ink-2); }
+  @media (max-width: 760px) { .bio { grid-template-columns: 1fr; } }
+
+  footer { margin-top: 56px; padding: 22px 0 40px; border-top: 1.5px solid var(--ink); font-size: 13.5px; color: var(--ink-2); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+  footer .mono { color: var(--ink-3); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="titleblock" aria-label="title block">
+    <div class="tb-top">
+      <div class="tb-name">
+        <h1>Muhammad Shahroz</h1>
+        <p>Mechanical engineer. I turn physical requirements into computational models from code, run them from the command line, and verify them against closed-form solutions.</p>
+      </div>
+      <div class="tb-title">
+        <div class="big">Computational mechanics portfolio: scripted FEA with executable verification</div>
+        <nav class="tb-links" aria-label="links">
+          <a href="https://github.com/Shahroz657/computational-mechanics-portfolio">Repository</a>
+          <a href="https://www.linkedin.com/in/shahroz657">LinkedIn</a>
+          <a href="mailto:muhammadshahroz1019@gmail.com">Email</a>
+        </nav>
+      </div>
+    </div>
+    <div class="tb-fields">
+      <div><span class="eyebrow">Drawn by</span><span class="val">M. Shahroz, B.Sc. ME (NUST 2024)</span></div>
+      <div><span class="eyebrow">Date</span><span class="val">2026-09</span></div>
+      <div><span class="eyebrow">Units</span><span class="val">SI; mm-N-MPa where stated</span></div>
+      <div><span class="eyebrow">Toolchain</span><span class="val">Python · Gmsh · CalculiX · CadQuery · SciPy</span></div>
+      <div><span class="eyebrow">Solvers run from</span><span class="val">CLI and API only, no GUI</span></div>
+      <div><span class="eyebrow">Rev</span><span class="val">A · CI-verified</span></div>
+    </div>
+  </header>
+
+  <section id="intro">
+    <p class="lede">Every study below starts from a requirement and ends with a number that is checked. Geometry, mesh, materials, loads and boundary conditions are written as Python; CalculiX runs as a subprocess; results are parsed into NumPy and compared with beam theory, Peterson's charts, fin theory, Euler buckling or an independent implementation. Each script finishes with a list of checks that pass or fail, and the quick ones re-run in GitHub Actions on every push.</p>
+    <p class="lede">The figures and numbers on this page are produced by those scripts. Nothing here was read off a contour plot.</p>
+
+    <div class="three">
+      <div>
+        <h3>Models from code</h3>
+        <p>Structured and unstructured meshes from the Gmsh API, geometry from CadQuery, plain-text CalculiX decks, node-order permutations for 20-node hexes and 10-node tets, consistent nodal loads on quadratic faces.</p>
+      </div>
+      <div>
+        <h3>Verification before interpretation</h3>
+        <p>Timoshenko, Kirsch, Peterson, Incropera, Euler, Basquin. Each model has a reference solution, an equilibrium check, a convergence series and a stated tolerance; the script exits non-zero when any of them fails.</p>
+      </div>
+      <div>
+        <h3>Finding what is wrong</h3>
+        <p>Shear locking, hourglassing, point-load and constraint-edge singularities, mixed unit systems, the wrong strength criterion: reproduced on purpose, quantified, and written up as a review with severities.</p>
+      </div>
+    </div>
+
+    <div class="ledger" aria-label="totals">
+      <div><div class="num mono">100</div><div class="lab">CalculiX solver runs behind the committed results</div></div>
+      <div><div class="num mono">41</div><div class="lab">objective checks, all passing, on the seven studies</div></div>
+      <div><div class="num mono">7 / 8</div><div class="lab">checks that fail on the AI-generated solution in project 06</div></div>
+      <div><div class="num mono">0</div><div class="lab">graphical-interface steps in any pipeline</div></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <span class="eyebrow">Studies</span>
+      <h2>Seven studies, each with a reference solution and a check list</h2>
+    </div>
+
+    <article class="project" id="p01">
+      <div>
+        <div class="num">01</div>
+        <h3>Cantilever beam: verification and element convergence</h3>
+        <p class="q">For a problem with a known answer, how close does the scripted Gmsh → CalculiX pipeline get, and which element formulations can be trusted at which mesh density?</p>
+        <dl class="facts">
+          <dt>Model</dt><dd>400 × 20 × 20 mm steel bar, clamped, 500 N tip traction applied through consistent nodal loads; 22 runs over C3D8, C3D8R, C3D8I, C3D20, C3D20R, C3D4 and C3D10.</dd>
+          <dt>Reference</dt><dd>Timoshenko tip deflection 4.008 mm (Cowper κ = 0.850); bending stress M c / I = 135 MPa at two depths from the clamp.</dd>
+          <dt>Result</dt><dd>Converged C3D20R: 0.9964 × Timoshenko and 135.0 MPa; the 0.4 % residual is the Poisson restraint of a real clamp. Single-layer C3D8 locks at 65 % of the deflection; single-layer C3D8R hourglasses to 27.7 × with no solver warning.</dd>
+          <dt>Checks</dt><dd><span class="checks">5 of 5 pass</span> · equilibrium to 1e-6 in every run</dd>
+        </dl>
+        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/01_cantilever_verification">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/01_cantilever_verification/run.py">run.py</a></div>
+      </div>
+      <figure>
+        <img src="assets/figures/01_convergence.png" alt="Tip deflection normalised by Timoshenko versus degrees of freedom for seven element types" loading="lazy">
+        <figcaption>Tip deflection relative to Timoshenko against degrees of freedom. Quadratic and incompatible-mode elements sit within 1 % from the coarsest mesh; full-integration and linear-tet elements approach from below, reduced-integration hexes from above.</figcaption>
+      </figure>
+    </article>
+
+    <article class="project" id="p02">
+      <div>
+        <div class="num">02</div>
+        <h3>Plate with a circular hole: stress-concentration sweep</h3>
+        <p class="q">Does a quarter-symmetry plane-stress model reproduce the textbook Kt across hole sizes, where does the peak sit, and how fine must the mesh be at the hole?</p>
+        <dl class="facts">
+          <dt>Model</dt><dd>100 mm wide plate, σ₀ = 100 MPa far-field tension, CPS8 quads refined by a distance field around the hole, d/W from 0.1 to 0.6 plus a four-level convergence series.</dd>
+          <dt>Reference</dt><dd>Peterson's finite-width fit for the net-section Kt; Kirsch's infinite-plate field along the net section.</dd>
+          <dt>Result</dt><dd>Kt within 1.4 to 2.0 % of the chart at every d/W, peak at θ = 0° in every case, Kt converged to 0.09 % between the two finest meshes; the finite-width departure from Kirsch is visible and explained.</dd>
+          <dt>Checks</dt><dd><span class="checks">5 of 5 pass</span></dd>
+        </dl>
+        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/02_plate_with_hole_stress_concentration">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/02_plate_with_hole_stress_concentration/run.py">run.py</a></div>
+      </div>
+      <figure>
+        <img src="assets/figures/02_field.png" alt="Contour of sigma_yy over sigma_0 near the hole with the quad mesh outlined" loading="lazy">
+        <figcaption>σ<sub>yy</sub>/σ₀ near the hole for d/W = 0.3 with the element outlines: the distance-threshold size field puts 32 quadratic elements on the quarter arc and coarsens away from it.</figcaption>
+      </figure>
+    </article>
+
+    <article class="project" id="p03">
+      <div>
+        <div class="num">03</div>
+        <h3>Modal and linear buckling analysis of a slender cantilever</h3>
+        <p class="q">Do the natural frequencies, mode shapes and critical loads of a 3D solid model match beam theory, and where do they legitimately differ from it?</p>
+        <dl class="facts">
+          <dt>Model</dt><dd>400 × 20 × 10 mm steel cantilever, C3D20R meshes from 2 319 to 80 043 DOF; a ten-mode frequency step and a four-mode buckling step, with every mode classified automatically as weak-axis, strong-axis, torsional or axial from its displacement field.</dd>
+          <dt>Reference</dt><dd>Euler-Bernoulli and exact Timoshenko cantilever frequencies, Saint-Venant torsion, the axial rod, Euler fixed-free column loads with the Engesser shear correction.</dd>
+          <dt>Result</dt><dd>First weak-axis mode 51.06 Hz against 50.96 Hz; all eight bending modes sit within +0.11 to +0.31 % of Timoshenko once shear and rotary inertia are included; first buckling load 5.15 kN against Euler's 5.14 kN. The study also isolates a CalculiX pitfall: buckling factors are only accurate when the reference load puts them near order one, and a unit load silently gives a 13 % error.</dd>
+          <dt>Checks</dt><dd><span class="checks">7 of 7 pass</span></dd>
+        </dl>
+        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/03_modal_and_buckling">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/03_modal_and_buckling/run.py">run.py</a></div>
+      </div>
+      <figure>
+        <img src="assets/figures/03_buckling_modes.png" alt="Four buckling mode shapes of the fixed-free column compared with the closed-form cosine shapes" loading="lazy">
+        <figcaption>Buckling modes of the fixed-free column against 1 − cos((2n − 1)πx / 2L): weak axis, strong axis, then the second and third weak-axis modes, each within 1 % of Euler's load.</figcaption>
+      </figure>
+    </article>
+
+    <article class="project" id="p04">
+      <div>
+        <div class="num">04</div>
+        <h3>Pin-fin heat transfer: 3D conduction and convection against fin theory</h3>
+        <p class="q">Does a three-dimensional CalculiX heat-transfer model reproduce the closed-form convective-tip fin solution, and does the energy balance close from the nodal results?</p>
+        <dl class="facts">
+          <dt>Model</dt><dd>Aluminium pin fin, 6 mm diameter, base held at 100 °C, film coefficient 50 W/m²K to 25 °C on the lateral surface and tip; curved C3D10 tetrahedra from a Gmsh OCC cylinder; three mesh levels and a length sweep from 10 to 140 mm, ten solves in all.</dd>
+          <dt>Reference</dt><dd>Incropera's fin with convective tip: q<sub>f</sub> = 3.6173 W, tip temperature 81.313 °C, efficiency 0.832 at 60 mm.</dd>
+          <dt>Result</dt><dd>Centre-line temperature within 0.014 °C of theory everywhere, tip within 0.001 °C, heat rate within 0.22 % as printed and 0.015 % once the reaction is corrected. Tracing the balance node by node showed that CalculiX's printed base flux omits the film loss of the first element ring, an order-h effect that explains its first-order convergence. Adding 20 mm of fin buys less than 5 % beyond 108 mm.</dd>
+          <dt>Checks</dt><dd><span class="checks">9 of 9 pass</span> · energy balance closed to 9 × 10⁻⁵ %</dd>
+        </dl>
+        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/04_pin_fin_heat_transfer">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/04_pin_fin_heat_transfer/run.py">run.py</a></div>
+      </div>
+      <figure>
+        <img src="assets/figures/04_length_sweep.png" alt="Fin heat rate and fin efficiency versus fin length, FE points on the analytic curves" loading="lazy">
+        <figcaption>Length sweep at the converged element size: heat rate and efficiency from CalculiX on the 1D fin-theory curves, with the point beyond which another 20 mm of fin adds less than 5 %.</figcaption>
+      </figure>
+    </article>
+
+    <article class="project" id="p05">
+      <div>
+        <div class="num">05</div>
+        <h3>L-bracket design optimisation from CAD script to verified optimum</h3>
+        <p class="q">What thickness and inner fillet radius give the lightest wall bracket that keeps a safety factor of 2 on yield and deflects less than 0.6 mm under 600 N, and can the optimum be trusted?</p>
+        <dl class="facts">
+          <dt>Model</dt><dd>Parametric CadQuery bracket exported to STEP, meshed with second-order tets refined on the fillet, solved in CalculiX in a consistent mm-N-MPa system; a 7 × 5 design of experiments, quadratic response surfaces in log stress and log deflection, SLSQP minimisation of mass, then a direct FE run at the optimum.</dd>
+          <dt>Reference</dt><dd>No closed form for an L-bracket, so the checks are equilibrium in every run, surface fit quality (R² 0.999), a direct FE verification of the surrogate optimum, and a four-level mesh series on the design stress.</dd>
+          <dt>Result</dt><dd>Optimum t = 7.19 mm, R = 10 mm: 0.509 kg against 0.697 kg for the thick-plate baseline, 27 % lighter, safety factor 2.56 and 0.590 mm verified by FE (surrogate said 2.51 and 0.600). Fillet stress converged to 0.8 %; the fixed-edge stress grew 21 % over the same series and is excluded as the singularity it is.</dd>
+          <dt>Checks</dt><dd><span class="checks">5 of 5 pass</span> · 41 solver runs</dd>
+        </dl>
+        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/05_bracket_design_optimization">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/05_bracket_design_optimization/bracket.py">bracket.py</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/05_bracket_design_optimization/run.py">run.py</a></div>
+      </div>
+      <figure>
+        <img src="assets/figures/05_design_space.png" alt="Design space contour of mass over thickness and fillet radius with the safety-factor and deflection constraint boundaries and the optimum" loading="lazy">
+        <figcaption>Design space from the response surfaces: mass in colour, the SF = 2 boundary in red and the 0.6 mm deflection boundary in orange; a large fillet lets the plate thin down until deflection, not stress, becomes the active constraint.</figcaption>
+      </figure>
+    </article>
+
+    <article class="project" id="p06">
+      <div>
+        <div class="num">06</div>
+        <h3>Reviewing an AI-generated FEA solution</h3>
+        <p class="q">Given a machine-generated finite-element answer to a simple task, can the review be made objective: which numbers are wrong, why, by how much, and which checks would have caught each error without knowing the answer?</p>
+        <dl class="facts">
+          <dt>Submission</dt><dd>794 linear tets, point load on one node, E entered in Pa with mm geometry, maximum stress read at the clamp face, safety factor 5.01 on ultimate strength, "reaction equals load, model is correct".</dd>
+          <dt>Review</dt><dd>The submission is re-run as written, refined four times, and compared with a corrected C3D20R model and with M c / I. Eight checks are applied automatically, each with its evidence.</dd>
+          <dt>Result</dt><dd>Deflection 2 × 10⁶ times too small (units × element stiffness); reported maximum rises 62 % under refinement because it sits on a singular edge; the real safety factor is 1.83 on yield. Seven of eight checks fail; equilibrium passes for every wrong mesh too.</dd>
+          <dt>Checks</dt><dd><span class="checks fail">7 of 8 fail on the AI solution</span> · reference model agrees with theory to 0.0 % (stress) and 0.4 % (deflection)</dd>
+        </dl>
+        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/06_ai_solution_review/REVIEW.md">Written review</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/06_ai_solution_review">README and data</a></div>
+      </div>
+      <figure>
+        <img src="assets/figures/06_singularity.png" alt="Stress at three locations of the AI model versus element size" loading="lazy">
+        <figcaption>The AI model under refinement: the stresses at the point-load node and on the clamped face keep rising, while the bending stress two depths from the clamp approaches the hand value of 135 MPa from below because the linear tetrahedra are too stiff.</figcaption>
+      </figure>
+    </article>
+
+    <article class="project" id="p07">
+      <div>
+        <div class="num">07</div>
+        <h3>Fatigue life under variable-amplitude loading</h3>
+        <p class="q">How much does the choice of mean-stress correction move a stress-life estimate for the same counted spectrum, and can the whole chain be proven against a closed-form case?</p>
+        <dl class="facts">
+          <dt>Model</dt><dd>Own ASTM E1049 rainflow counter, Shigley S-N line with the Marin factors evaluated for the project-01 bar (S<sub>e</sub> = 201 MPa), Goodman, Gerber, Soderberg and Smith-Watson-Topper corrections, Palmgren-Miner summation over a 60 s synthetic tip-load history.</dd>
+          <dt>Reference</dt><dd>The <code class="mono">rainflow</code> package (ASTM E1049) and the standard's own worked example; a constant-amplitude cosine whose life must equal N(S).</dd>
+          <dt>Result</dt><dd>1082.5 cycles per block, identical to the reference in every 10 MPa bin; every corrected amplitude sits below the endurance limit (margin 1.57 to 1.87), and on the extended Basquin line the four corrections span a factor of 5.05 in life.</dd>
+          <dt>Checks</dt><dd><span class="checks">9 of 9 pass</span></dd>
+        </dl>
+        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/07_fatigue_life_estimation">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/07_fatigue_life_estimation/fatigue.py">fatigue.py</a></div>
+      </div>
+      <figure>
+        <img src="assets/figures/07_rainflow_matrix.png" alt="Rainflow matrix of cycle range against cycle mean stress" loading="lazy">
+        <figcaption>Rainflow matrix of the 60 s block: 841 small noise cycles along the bottom, the 4 Hz load at 100 to 140 MPa range, and 17.5 large cycles where the two sinusoids add.</figcaption>
+      </figure>
+    </article>
+  </section>
+
+  <section id="method">
+    <div class="section-head">
+      <span class="eyebrow">Method</span>
+      <h2>The same pipeline under every study</h2>
+    </div>
+    <div class="pipeline" role="list">
+      <div class="step" role="listitem"><span class="eyebrow">1 Geometry</span><div class="what">From code</div><div class="how">CadQuery parametric solids exported to STEP, or Gmsh OCC primitives cut and fused in the script.</div></div>
+      <div class="step" role="listitem"><span class="eyebrow">2 Mesh</span><div class="what">Gmsh API</div><div class="how">Transfinite hexes or HXT tets, second order, distance-threshold size fields where stress gradients live.</div></div>
+      <div class="step" role="listitem"><span class="eyebrow">3 Deck</span><div class="what">Plain text</div><div class="how">Node-set and face lists from physical groups; material, sections, steps and loads written by helpers you can read.</div></div>
+      <div class="step" role="listitem"><span class="eyebrow">4 Solve</span><div class="what">ccx</div><div class="how">CalculiX called as a subprocess; static, frequency, buckling and heat-transfer steps; any *ERROR aborts the run.</div></div>
+      <div class="step" role="listitem"><span class="eyebrow">5 Parse</span><div class="what">.frd / .dat</div><div class="how">Nodal blocks and eigen tables into NumPy; von Mises and principal stresses computed in code.</div></div>
+      <div class="step" role="listitem"><span class="eyebrow">6 Verify</span><div class="what">Closed forms</div><div class="how">Equilibrium, convergence series, comparison with theory at a stated tolerance; PASS/FAIL written to summary.json.</div></div>
+      <div class="step" role="listitem"><span class="eyebrow">7 Repeat</span><div class="what">CI</div><div class="how">pytest plus the quick studies run on Ubuntu in GitHub Actions on every push, with the results uploaded.</div></div>
+    </div>
+    <div class="fealib">
+      <div>
+        <h3>fealib, the shared package</h3>
+        <p><code>mesh.py</code> converts any Gmsh model to CalculiX element types with the node-order permutations (C3D20, C3D10, C3D15, CPS8), turns physical groups into node and element sets, matches boundary elements to element faces for pressure and film loads, and computes consistent nodal loads for uniform tractions (corner nodes of a 20-node hex face carry −1/12 of the force, midside nodes +1/3).</p>
+      </div>
+      <div>
+        <h3>Solver driver and references</h3>
+        <p><code>ccx.py</code> writes decks, runs the solver and parses results; <code>analytic.py</code> holds the closed forms: Timoshenko and Euler beams, cantilever modes, Euler buckling, Peterson and Kirsch, Incropera fins, Lamé cylinders. Unit tests cover the parsers, the conversion and the formulas, and one end-to-end solve compared with Timoshenko.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cad">
+    <div class="section-head">
+      <span class="eyebrow">Earlier work</span>
+      <h2>CAD design and rendering</h2>
+    </div>
+    <p class="prose" style="color: var(--ink-2); margin-bottom: 26px;">Before this repository my design work lived in SolidWorks and PTC Creo. A selection, from team projects with real deliverables to personal modelling exercises.</p>
+    <div class="gallery">
+      <figure><img src="assets/cad/hexacopter-render.jpg" alt="Ventus-I hexacopter assembly render" loading="lazy"><figcaption><strong>Ventus-I hexacopter</strong> · SolidWorks. Design lead in a seven-person team for the IMechE UAS Challenge: agricultural UAV with precision navigation and a spraying payload.</figcaption></figure>
+      <figure><img src="assets/cad/v6-engine-render.jpg" alt="V6 twin-turbo engine assembly render in Creo" loading="lazy"><figcaption><strong>V6 twin-turbo engine</strong> · PTC Creo. Course project in a team of four; block, heads, crank train, manifolds and turbochargers modelled as a full assembly.</figcaption></figure>
+      <figure><img src="assets/cad/pipe-wrench-render.jpg" alt="Pipe wrench render" loading="lazy"><figcaption><strong>Pipe wrench</strong> · SolidWorks. Adjustable-jaw assembly built from image tracing with working mates, then rendered.</figcaption></figure>
+      <figure><img src="assets/cad/viking-ship-render.jpg" alt="Viking longship model render" loading="lazy"><figcaption><strong>Viking longship</strong> · SolidWorks. Personal modelling and rendering project with a full sail and figurehead.</figcaption></figure>
+      <figure><img src="assets/cad/tea-cup-render.jpg" alt="Tea cup and saucer render" loading="lazy"><figcaption><strong>Tea cup and saucer</strong> · SolidWorks. Concept surface model with a rendered glass material study.</figcaption></figure>
+      <figure><img src="assets/cad/bottle-cad.jpg" alt="Plastic bottle model in SolidWorks" loading="lazy"><figcaption><strong>PET bottle</strong> · SolidWorks. Revolved and swept surface model with the ribbed base and threaded neck.</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <span class="eyebrow">Background</span>
+      <h2>Where the judgement comes from</h2>
+    </div>
+    <div class="bio">
+      <dl>
+        <dt>Degree</dt><dd>B.Sc. Mechanical Engineering, National University of Sciences and Technology (NUST), Islamabad, 2024. <span class="sub">Thesis: environmental ageing of hybrid composites, ASTM D7264 / D2344 testing of 72 laminates.</span></dd>
+        <dt>Further</dt><dd>MIT Emerging Talent certificate in computer and data science, 2025. <span class="sub">Stanford Machine Learning specialisation; Imperial College Mathematics for Machine Learning.</span></dd>
+        <dt>Standards</dt><dd>ASTM, ASME, ISO, EN and API in test, design and evaluation work; GD&amp;T, FMEA, tolerance analysis.</dd>
+      </dl>
+      <dl>
+        <dt>Industry</dt><dd>Mechanical engineer, Atlas Honda, 2024 to date. <span class="sub">Process optimisation, root-cause analysis and CAPA, DFM/DFA reviews and engineering change orders.</span></dd>
+        <dt>Earlier</dt><dd>Project engineer, INTECH Process Automation, 2022 to 2024. <span class="sub">Skid-mounted packages and wellhead control systems: FMEA, tolerance analysis, drawing review to ASME and API.</span></dd>
+        <dt>AI data</dt><dd>Engineering evaluation tasks and reviews for micro1, Mercor and Turing since 2024. <span class="sub">Tasks grounded in standards, reasoning reviews of fatigue, stiffness and manufacturability trade-offs, team lead for engineering evaluation at Mercor.</span></dd>
+      </dl>
+    </div>
+  </section>
+
+  <footer>
+    <div>Every figure on this page is written by a script in the repository; the quick studies are re-run in GitHub Actions on every push.</div>
+    <div class="mono">MIT licence · <a href="https://github.com/Shahroz657/computational-mechanics-portfolio">github.com/Shahroz657/computational-mechanics-portfolio</a></div>
+  </footer>
+
+</div>
+</body>
+</html>
