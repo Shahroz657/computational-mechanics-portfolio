@@ -160,12 +160,43 @@
 
   footer { margin-top: 56px; padding: 22px 0 40px; border-top: 1.5px solid var(--ink); font-size: 13.5px; color: var(--ink-2); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
   footer .mono { color: var(--ink-3); }
+
+  /* navigation and collapsible studies */
+  .sitenav { position: sticky; top: 0; z-index: 20; background: var(--bg); border-bottom: 1px solid var(--rule); margin: 0 -24px 18px; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .sitenav .brand { color: var(--ink); font-weight: 500; margin-right: auto; text-transform: none; letter-spacing: 0; font-size: 13.5px; }
+  .sitenav a { color: var(--ink-2); }
+  .sitenav a:hover, .sitenav a:focus-visible { color: var(--accent); text-decoration: none; }
+  section, article, details, [id] { scroll-margin-top: 64px; }
+  .subnav { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 12.5px; margin: -12px 0 26px; }
+  .subnav a::before { content: "\2192 "; color: var(--ink-3); }
+  .hint { color: var(--ink-3); font-size: 13.5px; margin: -14px 0 6px; }
+  details.study { border-bottom: 1px solid var(--rule); }
+  details.study > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 44px 1fr; gap: 4px 16px; padding: 16px 0; align-items: baseline; }
+  details.study > summary::-webkit-details-marker { display: none; }
+  details.study > summary .num { font-family: var(--display); font-size: 15px; font-weight: 600; color: var(--ink-3); letter-spacing: 0.04em; }
+  details.study > summary .t { font-family: var(--display); font-size: 21px; font-weight: 600; line-height: 1.15; }
+  details.study > summary .t::after { content: "  +"; color: var(--accent); font-weight: 500; }
+  details.study[open] > summary .t::after { content: "  \2212"; }
+  details.study > summary .r { grid-column: 2; color: var(--ink-2); font-size: 14.5px; max-width: 78ch; }
+  details.study > summary:hover .t { color: var(--accent); }
+  details.study > .project { border-bottom: 0; padding: 4px 0 30px; }
+  @media (max-width: 760px) { .sitenav { gap: 6px 14px; } details.study > summary { grid-template-columns: 34px 1fr; } }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header class="titleblock" aria-label="title block">
+  <nav class="sitenav" aria-label="sections">
+    <a class="brand" href="#top">Muhammad Shahroz</a>
+    <a href="#research">Research</a>
+    <a href="#projects">Simulation</a>
+    <a href="#method">Method</a>
+    <a href="#cad">CAD</a>
+    <a href="#about">Background</a>
+    <a href="cv/Shahroz_CV.pdf">CV</a>
+  </nav>
+
+  <header class="titleblock" id="top" aria-label="title block">
     <div class="tb-top">
       <div class="tb-name">
         <h1>Muhammad Shahroz</h1>
@@ -223,6 +254,11 @@
       <span class="eyebrow">Research</span>
       <h2>Three studies on degradation, prediction and noisy data</h2>
     </div>
+    <nav class="subnav" aria-label="research studies">
+      <a href="#r01">R1 Environmental aging of hybrid laminates</a>
+      <a href="#r02">R2 Competing-process aging model</a>
+      <a href="#r03">R3 Air-quality forecasting</a>
+    </nav>
 
     <article class="project" id="r01">
       <div>
@@ -298,11 +334,12 @@
       <span class="eyebrow">Simulation</span>
       <h2>Seven finite-element studies, each with a reference solution and a check list</h2>
     </div>
+    <p class="hint">Each line is one study; click it to open the model, reference, result, checks and figure.</p>
 
-    <article class="project" id="p01">
+    <details class="study" id="p01">
+      <summary><span class="num">01</span><span class="t">Cantilever beam: verification and element convergence</span><span class="r">Converged quadratic elements land at 0.9964 of Timoshenko and 135.0 MPa; shear locking and hourglassing reproduced on purpose.</span></summary>
+      <div class="project">
       <div>
-        <div class="num">01</div>
-        <h3>Cantilever beam: verification and element convergence</h3>
         <p class="q">For a problem with a known answer, how close does the scripted Gmsh → CalculiX pipeline get, and which element formulations can be trusted at which mesh density?</p>
         <dl class="facts">
           <dt>Model</dt><dd>400 × 20 × 20 mm steel bar, clamped, 500 N tip traction applied through consistent nodal loads; 22 runs over C3D8, C3D8R, C3D8I, C3D20, C3D20R, C3D4 and C3D10.</dd>
@@ -316,12 +353,13 @@
         <img src="assets/figures/01_convergence.png" alt="Tip deflection normalised by Timoshenko versus degrees of freedom for seven element types" loading="lazy">
         <figcaption>Tip deflection relative to Timoshenko against degrees of freedom. Quadratic and incompatible-mode elements sit within 1 % from the coarsest mesh; full-integration and linear-tet elements approach from below, reduced-integration hexes from above.</figcaption>
       </figure>
-    </article>
+    </div>
+    </details>
 
-    <article class="project" id="p02">
+    <details class="study" id="p02">
+      <summary><span class="num">02</span><span class="t">Plate with a circular hole: stress-concentration sweep</span><span class="r">Stress concentration within 1.4 to 2.0 % of Peterson’s chart for every hole size, converged to 0.09 %.</span></summary>
+      <div class="project">
       <div>
-        <div class="num">02</div>
-        <h3>Plate with a circular hole: stress-concentration sweep</h3>
         <p class="q">Does a quarter-symmetry plane-stress model reproduce the textbook Kt across hole sizes, where does the peak sit, and how fine must the mesh be at the hole?</p>
         <dl class="facts">
           <dt>Model</dt><dd>100 mm wide plate, σ₀ = 100 MPa far-field tension, CPS8 quads refined by a distance field around the hole, d/W from 0.1 to 0.6 plus a four-level convergence series.</dd>
@@ -335,12 +373,13 @@
         <img src="assets/figures/02_field.png" alt="Contour of sigma_yy over sigma_0 near the hole with the quad mesh outlined" loading="lazy">
         <figcaption>σ<sub>yy</sub>/σ₀ near the hole for d/W = 0.3 with the element outlines: the distance-threshold size field puts 32 quadratic elements on the quarter arc and coarsens away from it.</figcaption>
       </figure>
-    </article>
+    </div>
+    </details>
 
-    <article class="project" id="p03">
+    <details class="study" id="p03">
+      <summary><span class="num">03</span><span class="t">Modal and linear buckling analysis of a slender cantilever</span><span class="r">Every bending mode within 0.31 % of Timoshenko and the first buckling load within 0.19 % of Euler; a solver pitfall isolated.</span></summary>
+      <div class="project">
       <div>
-        <div class="num">03</div>
-        <h3>Modal and linear buckling analysis of a slender cantilever</h3>
         <p class="q">Do the natural frequencies, mode shapes and critical loads of a 3D solid model match beam theory, and where do they legitimately differ from it?</p>
         <dl class="facts">
           <dt>Model</dt><dd>400 × 20 × 10 mm steel cantilever, C3D20R meshes from 2 319 to 80 043 DOF; a ten-mode frequency step and a four-mode buckling step, with every mode classified automatically as weak-axis, strong-axis, torsional or axial from its displacement field.</dd>
@@ -354,12 +393,13 @@
         <img src="assets/figures/03_buckling_modes.png" alt="Four buckling mode shapes of the fixed-free column compared with the closed-form cosine shapes" loading="lazy">
         <figcaption>Buckling modes of the fixed-free column against 1 − cos((2n − 1)πx / 2L): weak axis, strong axis, then the second and third weak-axis modes, each within 1 % of Euler's load.</figcaption>
       </figure>
-    </article>
+    </div>
+    </details>
 
-    <article class="project" id="p04">
+    <details class="study" id="p04">
+      <summary><span class="num">04</span><span class="t">Pin-fin heat transfer: 3D conduction and convection against fin theory</span><span class="r">Fin temperature within 0.014 °C and heat rate within 0.22 % of Incropera; energy balance closed.</span></summary>
+      <div class="project">
       <div>
-        <div class="num">04</div>
-        <h3>Pin-fin heat transfer: 3D conduction and convection against fin theory</h3>
         <p class="q">Does a three-dimensional CalculiX heat-transfer model reproduce the closed-form convective-tip fin solution, and does the energy balance close from the nodal results?</p>
         <dl class="facts">
           <dt>Model</dt><dd>Aluminium pin fin, 6 mm diameter, base held at 100 °C, film coefficient 50 W/m²K to 25 °C on the lateral surface and tip; curved C3D10 tetrahedra from a Gmsh OCC cylinder; three mesh levels and a length sweep from 10 to 140 mm, ten solves in all.</dd>
@@ -373,12 +413,13 @@
         <img src="assets/figures/04_length_sweep.png" alt="Fin heat rate and fin efficiency versus fin length, FE points on the analytic curves" loading="lazy">
         <figcaption>Length sweep at the converged element size: heat rate and efficiency from CalculiX on the 1D fin-theory curves, with the point beyond which another 20 mm of fin adds less than 5 %.</figcaption>
       </figure>
-    </article>
+    </div>
+    </details>
 
-    <article class="project" id="p05">
+    <details class="study" id="p05">
+      <summary><span class="num">05</span><span class="t">L-bracket design optimisation from CAD script to verified optimum</span><span class="r">35-point design of experiments, response surface R² 0.999, optimum 26.9 % lighter and verified at safety factor 2.56.</span></summary>
+      <div class="project">
       <div>
-        <div class="num">05</div>
-        <h3>L-bracket design optimisation from CAD script to verified optimum</h3>
         <p class="q">What thickness and inner fillet radius give the lightest wall bracket that keeps a safety factor of 2 on yield and deflects less than 0.6 mm under 600 N, and can the optimum be trusted?</p>
         <dl class="facts">
           <dt>Model</dt><dd>Parametric CadQuery bracket exported to STEP, meshed with second-order tets refined on the fillet, solved in CalculiX in a consistent mm-N-MPa system; a 7 × 5 design of experiments, quadratic response surfaces in log stress and log deflection, SLSQP minimisation of mass, then a direct FE run at the optimum.</dd>
@@ -392,12 +433,13 @@
         <img src="assets/figures/05_design_space.png" alt="Design space contour of mass over thickness and fillet radius with the safety-factor and deflection constraint boundaries and the optimum" loading="lazy">
         <figcaption>Design space from the response surfaces: mass in colour, the SF = 2 boundary in red and the 0.6 mm deflection boundary in orange; a large fillet lets the plate thin down until deflection, not stress, becomes the active constraint.</figcaption>
       </figure>
-    </article>
+    </div>
+    </details>
 
-    <article class="project" id="p06">
+    <details class="study" id="p06">
+      <summary><span class="num">06</span><span class="t">Reviewing an AI-generated FEA solution</span><span class="r">7 of 8 objective checks fail on an AI-generated solution: units, a singular maximum, the wrong strength criterion.</span></summary>
+      <div class="project">
       <div>
-        <div class="num">06</div>
-        <h3>Reviewing an AI-generated FEA solution</h3>
         <p class="q">Given a machine-generated finite-element answer to a simple task, can the review be made objective: which numbers are wrong, why, by how much, and which checks would have caught each error without knowing the answer?</p>
         <dl class="facts">
           <dt>Submission</dt><dd>794 linear tets, point load on one node, E entered in Pa with mm geometry, maximum stress read at the clamp face, safety factor 5.01 on ultimate strength, "reaction equals load, model is correct".</dd>
@@ -411,12 +453,13 @@
         <img src="assets/figures/06_singularity.png" alt="Stress at three locations of the AI model versus element size" loading="lazy">
         <figcaption>The AI model under refinement: the stresses at the point-load node and on the clamped face keep rising, while the bending stress two depths from the clamp approaches the hand value of 135 MPa from below because the linear tetrahedra are too stiff.</figcaption>
       </figure>
-    </article>
+    </div>
+    </details>
 
-    <article class="project" id="p07">
+    <details class="study" id="p07">
+      <summary><span class="num">07</span><span class="t">Fatigue life under variable-amplitude loading</span><span class="r">Rainflow count identical to the reference package in every bin; mean-stress corrections span a factor of 5 in life.</span></summary>
+      <div class="project">
       <div>
-        <div class="num">07</div>
-        <h3>Fatigue life under variable-amplitude loading</h3>
         <p class="q">How much does the choice of mean-stress correction move a stress-life estimate for the same counted spectrum, and can the whole chain be proven against a closed-form case?</p>
         <dl class="facts">
           <dt>Model</dt><dd>Own ASTM E1049 rainflow counter, Shigley S-N line with the Marin factors evaluated for the project-01 bar (S<sub>e</sub> = 201 MPa), Goodman, Gerber, Soderberg and Smith-Watson-Topper corrections, Palmgren-Miner summation over a 60 s synthetic tip-load history.</dd>
@@ -430,7 +473,8 @@
         <img src="assets/figures/07_rainflow_matrix.png" alt="Rainflow matrix of cycle range against cycle mean stress" loading="lazy">
         <figcaption>Rainflow matrix of the 60 s block: 841 small noise cycles along the bottom, the 4 Hz load at 100 to 140 MPa range, and 17.5 large cycles where the two sinusoids add.</figcaption>
       </figure>
-    </article>
+    </div>
+    </details>
   </section>
 
   <section id="method">
