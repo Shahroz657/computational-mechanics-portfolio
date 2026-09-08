@@ -4,8 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![site](https://img.shields.io/badge/portfolio-site-1f5fb4.svg)](https://shahroz657.github.io/portfolio/)
 
-Mechanical engineering graduate (NUST, 2024) preparing for doctoral research on how composite
-materials degrade in service and on the models that can predict it. This repository holds the
+Mechanical engineering graduate (NUST, 2024) preparing for doctoral research in mechanics of
+materials, computational mechanics, scientific machine learning and digital twins. This repository holds the
 portfolio site and the scripted finite-element studies; the research work is summarised below with
 links to its reports and code. Site: **https://shahroz657.github.io/portfolio/**
 
@@ -141,8 +141,9 @@ design) and the CEME Centre for Research and Innovation (CAD and FEA for an elec
 conversion). Alongside, since 2024, part-time technical researcher designing engineering evaluation
 tasks for AI-training teams (micro1; earlier Mercor and Turing).
 
-Seeking a funded PhD position starting Spring or Fall 2027 in composite durability, mechanics of
-materials, or physics-based and data-driven modelling of engineering systems.
+Seeking a funded PhD position starting Spring or Fall 2027 in mechanics of materials, computational
+mechanics, scientific machine learning (surrogate and physics-informed models, uncertainty
+quantification), or digital twins and data-driven monitoring of engineering systems.
 [CV](docs/cv/Shahroz_CV.pdf) · [LinkedIn](https://www.linkedin.com/in/shahroz657) ·
 [GitHub](https://github.com/Shahroz657) · muhammadshahroz657@gmail.com
 
