@@ -84,10 +84,9 @@ hexacopter (design lead, seven-person team, IMechE UAS Challenge), a V6 twin-tur
 
 B.Sc. Mechanical Engineering, National University of Sciences and Technology (NUST), 2024, with a thesis on
 environmental ageing of hybrid composites (ASTM D7264 / D2344, 72 specimens, 1 000+ measurements).
-MIT Emerging Talent certificate in computer and data science (2025). Mechanical engineer at Atlas Honda
-(process optimisation, RCA/CAPA, DFM/DFA); previously project engineer at INTECH Process Automation
-(FMEA, tolerance analysis, GD&T to ASME/API). Since 2024 I also design and review engineering
-evaluation tasks for AI-training data teams (micro1, Mercor, Turing).
+MIT Emerging Talent certificate in computer and data science (2025). Since 2024 I design and review
+engineering evaluation tasks for AI-training data teams (micro1, Mercor, Turing), and I am extending the
+thesis with a computational model of hygrothermal ageing in epoxy laminates ahead of PhD applications.
 
 [LinkedIn](https://www.linkedin.com/in/shahroz657) · [GitHub](https://github.com/Shahroz657) · muhammadshahroz1019@gmail.com
 
