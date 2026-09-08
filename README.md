@@ -105,7 +105,7 @@ The shared package [`fealib/`](fealib) is small on purpose and fully readable:
 
 ```bash
 git clone https://github.com/Shahroz657/portfolio
-cd computational-mechanics-portfolio
+cd portfolio
 python -m venv .venv && source .venv/bin/activate      # Python 3.10-3.12
 pip install -e ".[dev]"                                # numpy, scipy, gmsh, cadquery, matplotlib, pytest ...
 python -m pytest -q
