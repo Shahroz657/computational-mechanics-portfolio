@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Muhammad Shahroz · Computational Mechanics</title>
-<meta name="description" content="Scripted finite-element engineering in Python: Gmsh, CalculiX and CadQuery driven from code, every model verified against closed-form solutions with executable checks.">
+<title>Muhammad Shahroz · Research portfolio</title>
+<meta name="description" content="Muhammad Shahroz, mechanical engineering graduate (NUST 2024) preparing for doctoral research on the durability of composite materials: an environmental-aging study of hybrid laminates, a competing-process model of hygrothermal aging, air-quality forecasting from twenty years of data, and verified finite-element studies.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -169,58 +169,134 @@
     <div class="tb-top">
       <div class="tb-name">
         <h1>Muhammad Shahroz</h1>
-        <p>Mechanical engineer. I turn physical requirements into computational models from code, run them from the command line, and verify them against closed-form solutions.</p>
+        <p>Mechanical engineering graduate preparing for doctoral research on how composite materials degrade in service, and on the models that can predict it.</p>
       </div>
       <div class="tb-title">
-        <div class="big">Computational mechanics portfolio: scripted FEA with executable verification</div>
+        <div class="big">Research portfolio: composite durability by experiment, physics-based models and data</div>
         <nav class="tb-links" aria-label="links">
-          <a href="https://github.com/Shahroz657/computational-mechanics-portfolio">Repository</a>
+          <a href="cv/Shahroz_CV.pdf">CV (PDF)</a>
+          <a href="https://github.com/Shahroz657">GitHub</a>
           <a href="https://www.linkedin.com/in/shahroz657">LinkedIn</a>
-          <a href="mailto:muhammadshahroz1019@gmail.com">Email</a>
+          <a href="mailto:muhammadshahroz657@gmail.com">Email</a>
         </nav>
       </div>
     </div>
     <div class="tb-fields">
-      <div><span class="eyebrow">Drawn by</span><span class="val">M. Shahroz, B.Sc. ME (NUST 2024)</span></div>
-      <div><span class="eyebrow">Date</span><span class="val">2026-09</span></div>
-      <div><span class="eyebrow">Units</span><span class="val">SI; mm-N-MPa where stated</span></div>
-      <div><span class="eyebrow">Toolchain</span><span class="val">Python · Gmsh · CalculiX · CadQuery · SciPy</span></div>
-      <div><span class="eyebrow">Solvers run from</span><span class="val">CLI and API only, no GUI</span></div>
-      <div><span class="eyebrow">Rev</span><span class="val">A · CI-verified</span></div>
+      <div><span class="eyebrow">Degree</span><span class="val">B.E. Mechanical Engineering, NUST, 2024</span></div>
+      <div><span class="eyebrow">Thesis</span><span class="val">Environmental aging of hybrid composites</span></div>
+      <div><span class="eyebrow">Further study</span><span class="val">MIT Emerging Talent, computer and data science, 2025</span></div>
+      <div><span class="eyebrow">Interests</span><span class="val">Composite durability · mechanics of materials · physics-based and data-driven models</span></div>
+      <div><span class="eyebrow">Seeking</span><span class="val">PhD position, Spring or Fall 2027</span></div>
+      <div><span class="eyebrow">Updated</span><span class="val">2026-09</span></div>
     </div>
   </header>
 
   <section id="intro">
-    <p class="lede">Every study below starts from a requirement and ends with a number that is checked. Geometry, mesh, materials, loads and boundary conditions are written as Python; CalculiX runs as a subprocess; results are parsed into NumPy and compared with beam theory, Peterson's charts, fin theory, Euler buckling or an independent implementation. Each script finishes with a list of checks that pass or fail, and the quick ones re-run in GitHub Actions on every push.</p>
-    <p class="lede">The figures and numbers on this page are produced by those scripts. Nothing here was read off a contour plot.</p>
+    <p class="lede">For my thesis I measured how basalt, carbon and hybrid epoxy laminates lose strength in warm salt water, and built the aging rigs when the lab had none. The strength histories were not simple: carbon laminates got stronger before they got weaker. In 2026 I wrote a model of the competing processes that can produce that behaviour and tested what sparse data can identify.</p>
+    <p class="lede">Alongside, I have forecast pollutant concentrations from twenty years of atmospheric data and written finite-element studies that are checked against closed-form solutions. Every number on this page traces to a report, a data table or a script.</p>
 
     <div class="three">
       <div>
-        <h3>Models from code</h3>
-        <p>Structured and unstructured meshes from the Gmsh API, geometry from CadQuery, plain-text CalculiX decks, node-order permutations for 20-node hexes and 10-node tets, consistent nodal loads on quadratic faces.</p>
+        <h3>Experiment</h3>
+        <p>Full-factorial durability study: four laminates, three exposure times, two ASTM tests, 72 specimens fabricated by hand lay-up and vacuum-bag curing, tested on a universal testing machine.</p>
       </div>
       <div>
-        <h3>Verification before interpretation</h3>
-        <p>Timoshenko, Kirsch, Peterson, Incropera, Euler, Basquin. Each model has a reference solution, an equilibrium check, a convergence series and a stated tolerance; the script exits non-zero when any of them fails.</p>
+        <h3>Model</h3>
+        <p>Moisture transport coupled to post-cure, plasticization and damage, with Arrhenius kinetics; global sensitivity over 512 sampled cases and an identifiability study on synthetic sparse data.</p>
       </div>
       <div>
-        <h3>Finding what is wrong</h3>
-        <p>Shear locking, hourglassing, point-load and constraint-edge singularities, mixed unit systems, the wrong strength criterion: reproduced on purpose, quantified, and written up as a review with severities.</p>
+        <h3>Data</h3>
+        <p>Time-series models benchmarked on 65,000 monthly pollutant values, and seven finite-element studies whose scripts fail loudly when a check against theory does not pass.</p>
       </div>
     </div>
 
     <div class="ledger" aria-label="totals">
-      <div><div class="num mono">100</div><div class="lab">CalculiX solver runs behind the committed results</div></div>
-      <div><div class="num mono">41</div><div class="lab">objective checks, all passing, on the seven studies</div></div>
-      <div><div class="num mono">7 / 8</div><div class="lab">checks that fail on the AI-generated solution in project 06</div></div>
-      <div><div class="num mono">0</div><div class="lab">graphical-interface steps in any pipeline</div></div>
+      <div><div class="num mono">72</div><div class="lab">laminate specimens fabricated, aged and tested</div></div>
+      <div><div class="num mono">1,000</div><div class="lab">flexural and short-beam-shear measurements</div></div>
+      <div><div class="num mono">512</div><div class="lab">sampled cases in the global sensitivity study of the aging model</div></div>
+      <div><div class="num mono">41</div><div class="lab">executable checks passing across the seven finite-element studies</div></div>
     </div>
+  </section>
+
+  <section id="research">
+    <div class="section-head">
+      <span class="eyebrow">Research</span>
+      <h2>Three studies on degradation, prediction and noisy data</h2>
+    </div>
+
+    <article class="project" id="r01">
+      <div>
+        <div class="num">R1 · 2023 to 2024 · NUST Materials Laboratory, advisor Dr. Zubair Sajid</div>
+        <h3>Environmental aging of basalt, carbon and hybrid epoxy laminates</h3>
+        <p class="q">How much flexural and interlaminar strength do basalt, carbon and basalt–carbon hybrid laminates lose after 10 and 20 days in warm salt water, and does the stacking sequence change the answer?</p>
+        <dl class="facts">
+          <dt>Materials</dt><dd>Unidirectional basalt and carbon fabrics in epoxy: pure basalt, pure carbon and two hybrids with basalt skins (C4B4 and C6B2), eight plies each, hand lay-up and vacuum-bag cure at 60 °C, cut to ASTM dimensions.</dd>
+          <dt>Design</dt><dd>Full factorial: 4 laminates × 3 exposure times × 2 tests with 3 replicates, 72 specimens. ASTM D7264 three-point flexure and ASTM D2344 short-beam shear on a universal testing machine; about 1,000 measurements.</dd>
+          <dt>Exposure</dt><dd>Marine bath at 40 °C and 3.5 % salinity, open to atmosphere, sampled at 0, 10 and 20 days, plus a hygrothermal chamber with heater, humidifier, fans and sensors. Both rigs designed in SolidWorks and controlled by Arduino with remote logging, because no commercial chamber was available.</dd>
+          <dt>Result</dt><dd>After 20 days, basalt-containing laminates lost 20 to 30 % of flexural strength and 10 to 20 % of interlaminar shear strength. Pure carbon rose about 19 % in flexural strength at 10 days and fell back by 20 days: a non-monotonic history that motivated the model below. Unaged properties agreed with published values for the same fibre systems.</dd>
+        </dl>
+        <div class="links"><a href="https://drive.google.com/file/d/1eM4FNA7IN9RA6Dhap0gcsLwkUSNGvDQj/view">Thesis report</a><a href="#r02">Follow-up model</a></div>
+      </div>
+      <figure>
+        <img src="assets/research/thesis-flexure-cfrp-curves.png" alt="Flexural stress against strain for pure carbon specimens unaged, after 10 days and after 20 days of marine exposure" loading="lazy">
+        <figcaption>Flexural stress–strain of pure carbon specimens: unaged (blue), 10 days (green) and 20 days (red) in the marine bath. Strength rises and then falls while the initial stiffness barely moves.</figcaption>
+      </figure>
+    </article>
+    <div class="gallery" style="margin: -10px 0 34px;">
+      <figure><img src="assets/research/thesis-layups.png" alt="Ply stacking diagrams for pure basalt, pure carbon, C4B4 and C6B2 laminates" loading="lazy"><figcaption><strong>Stacking sequences</strong> · pure basalt, pure carbon, and hybrids with two or one basalt plies on each face.</figcaption></figure>
+      <figure><img src="assets/research/thesis-hand-layup.png" alt="Photographs of resin mixing and hand lay-up of the laminates" loading="lazy"><figcaption><strong>Fabrication</strong> · resin mixing, hand lay-up and consolidation before vacuum bagging.</figcaption></figure>
+      <figure><img src="assets/research/thesis-flexure-test.png" alt="Three-point bending fixture in the universal testing machine" loading="lazy"><figcaption><strong>Testing</strong> · three-point flexure fixture on the universal testing machine.</figcaption></figure>
+      <figure><img src="assets/research/thesis-bath-marine.png" alt="CAD model of the marine aging bath with temperature sensor, ventilation holes and water heater" loading="lazy"><figcaption><strong>Marine bath</strong> · heated salt-water bath with temperature control and ventilation, designed in SolidWorks.</figcaption></figure>
+      <figure><img src="assets/research/thesis-chamber-hygrothermal.png" alt="CAD model of the hygrothermal chamber with sensor, fans, heating and humidifying elements" loading="lazy"><figcaption><strong>Hygrothermal chamber</strong> · heater, humidifier, two fans and a temperature–humidity sensor on an Arduino controller.</figcaption></figure>
+      <figure><img src="assets/research/thesis-weight-gain-cfrp.png" alt="Weight gain of a carbon laminate against aging time over 14 days" loading="lazy"><figcaption><strong>Moisture uptake</strong> · weight gain of a carbon laminate over 14 days, the diffusion-shaped curve the model starts from.</figcaption></figure>
+    </div>
+
+    <article class="project" id="r02">
+      <div>
+        <div class="num">R2 · 2026 · independent, extends the thesis</div>
+        <h3>A competing-process model of hygrothermal aging in epoxy laminates</h3>
+        <p class="q">When can warm, wet exposure first improve a laminate property and later degrade it, and which of the competing processes can a sparse test programme actually identify?</p>
+        <dl class="facts">
+          <dt>Model</dt><dd>One-dimensional Fickian slab and a Langmuir mobile/bound-water alternative for moisture; a bounded property model with continued post-cure, reversible plasticization and irreversible damage, each with its own Arrhenius temperature dependence.</dd>
+          <dt>Cases</dt><dd>Controlled carbon/epoxy, basalt/epoxy and carbon/basalt hybrid scenarios inside literature ranges. Every parameter is labelled measured, literature range or prior in a source register; nothing is presented as a calibrated material card.</dd>
+          <dt>Result</dt><dd>At 60 °C the carbon/epoxy case gains 5.9 % by day 18 and drops below its unaged value after day 146; one-year retention is 91, 79 and 67 % for the three cases. Across 512 sampled cases, peak timing is governed by plasticization sensitivity and cure rate, long-term retention by damage rate and capacity. Gravimetry recovers the transport parameters but cannot separate cure amplitude from cure rate.</dd>
+          <dt>Checks</dt><dd><span class="checks">6 of 6 tests pass</span> · Fickian limit, bounds, long-time plateau, Arrhenius, dry limit, parameter validation; run is deterministic at a fixed seed.</dd>
+        </dl>
+        <div class="links"><a href="https://github.com/Shahroz657/composite-hygrothermal-aging">Code and data</a><a href="https://github.com/Shahroz657/composite-hygrothermal-aging/blob/main/REPORT.md">Report with equations and sources</a></div>
+      </div>
+      <figure>
+        <img src="assets/research/model-property-histories.png" alt="Normalized property histories for carbon, basalt and hybrid cases at four temperatures, and the decomposition into cure, reversible and irreversible factors" loading="lazy">
+        <figcaption>Normalized property against exposure time at 25, 40, 60 and 80 °C for the three cases, and the decomposition of the hybrid history at 60 °C into its cure, reversible and irreversible factors.</figcaption>
+      </figure>
+    </article>
+    <div class="gallery" style="margin: -10px 0 34px; grid-template-columns: repeat(2, 1fr);">
+      <figure><img src="assets/research/model-regime-map.png" alt="Regime map of post-cure rate against damage rate with four response classes, and representative histories" loading="lazy"><figcaption><strong>Regime map</strong> · monotonic degradation, initial plateau, improve-then-deteriorate and sustained improvement emerge from the ratio of cure and damage rates, not from a fitted polynomial.</figcaption></figure>
+      <figure><img src="assets/research/model-identifiability.png" alt="Recovered-to-true parameter ratios against the number of destructive tests, with and without gravimetry" loading="lazy"><figcaption><strong>Identifiability</strong> · with mechanical tests alone the recovery of kinetic parameters stays broad; adding mass-uptake data pins down the transport parameters.</figcaption></figure>
+    </div>
+
+    <article class="project" id="r03">
+      <div>
+        <div class="num">R3 · 2024 · independent</div>
+        <h3>Forecasting air quality in Lahore from twenty years of atmospheric data</h3>
+        <p class="q">Which model best forecasts monthly pollutant concentrations in one of the world's most polluted cities, and what does the answer say about the structure of the series?</p>
+        <dl class="facts">
+          <dt>Data</dt><dd>Copernicus CAMS reanalysis, January 2003 to December 2022: PM1, PM2.5, PM10, CO, NO, NO2, SO2, O3 and temperature, about 65,000 values converted from GRIB to tabular form, no gaps.</dd>
+          <dt>Method</dt><dd>Augmented Dickey–Fuller test for stationarity, STL decomposition, walk-forward validation; ARIMA selected by AIC, SARIMAX, STL-based baselines and XGBoost tuned by grid search; scored by mean squared error and dynamic time warping.</dd>
+          <dt>Result</dt><dd>ARIMA(0,1,0) scored best (MSE 3.7 × 10⁻⁴, DTW 1.19), about 30 % lower error than the alternatives. The series behaves like a random walk with strong winter seasonality, so a differenced model beats heavier ones. Manuscript drafted.</dd>
+        </dl>
+        <div class="links"><a href="https://docs.google.com/document/d/1TF4qh9-M5R43Pwvi0iUeYt-q1BlmLZnx/edit">Manuscript</a></div>
+      </div>
+      <figure>
+        <img src="assets/research/aqi-pm-monthly.jpg" alt="Monthly mean particulate matter concentrations for PM1, PM10 and PM2.5 in Lahore with error bars" loading="lazy">
+        <figcaption>Monthly means of PM1, PM10 and PM2.5 over 2003 to 2022 with their spread: concentrations roughly triple between summer and the November smog season.</figcaption>
+      </figure>
+    </article>
   </section>
 
   <section id="projects">
     <div class="section-head">
-      <span class="eyebrow">Studies</span>
-      <h2>Seven studies, each with a reference solution and a check list</h2>
+      <span class="eyebrow">Simulation</span>
+      <h2>Seven finite-element studies, each with a reference solution and a check list</h2>
     </div>
 
     <article class="project" id="p01">
@@ -234,7 +310,7 @@
           <dt>Result</dt><dd>Converged C3D20R: 0.9964 × Timoshenko and 135.0 MPa; the 0.4 % residual is the Poisson restraint of a real clamp. Single-layer C3D8 locks at 65 % of the deflection; single-layer C3D8R hourglasses to 27.7 × with no solver warning.</dd>
           <dt>Checks</dt><dd><span class="checks">5 of 5 pass</span> · equilibrium to 1e-6 in every run</dd>
         </dl>
-        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/01_cantilever_verification">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/01_cantilever_verification/run.py">run.py</a></div>
+        <div class="links"><a href="https://github.com/Shahroz657/portfolio/tree/main/projects/01_cantilever_verification">README and data</a><a href="https://github.com/Shahroz657/portfolio/blob/main/projects/01_cantilever_verification/run.py">run.py</a></div>
       </div>
       <figure>
         <img src="assets/figures/01_convergence.png" alt="Tip deflection normalised by Timoshenko versus degrees of freedom for seven element types" loading="lazy">
@@ -253,7 +329,7 @@
           <dt>Result</dt><dd>Kt within 1.4 to 2.0 % of the chart at every d/W, peak at θ = 0° in every case, Kt converged to 0.09 % between the two finest meshes; the finite-width departure from Kirsch is visible and explained.</dd>
           <dt>Checks</dt><dd><span class="checks">5 of 5 pass</span></dd>
         </dl>
-        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/02_plate_with_hole_stress_concentration">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/02_plate_with_hole_stress_concentration/run.py">run.py</a></div>
+        <div class="links"><a href="https://github.com/Shahroz657/portfolio/tree/main/projects/02_plate_with_hole_stress_concentration">README and data</a><a href="https://github.com/Shahroz657/portfolio/blob/main/projects/02_plate_with_hole_stress_concentration/run.py">run.py</a></div>
       </div>
       <figure>
         <img src="assets/figures/02_field.png" alt="Contour of sigma_yy over sigma_0 near the hole with the quad mesh outlined" loading="lazy">
@@ -272,7 +348,7 @@
           <dt>Result</dt><dd>First weak-axis mode 51.06 Hz against 50.96 Hz; all eight bending modes sit within +0.11 to +0.31 % of Timoshenko once shear and rotary inertia are included; first buckling load 5.15 kN against Euler's 5.14 kN. The study also isolates a CalculiX pitfall: buckling factors are only accurate when the reference load puts them near order one, and a unit load silently gives a 13 % error.</dd>
           <dt>Checks</dt><dd><span class="checks">7 of 7 pass</span></dd>
         </dl>
-        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/03_modal_and_buckling">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/03_modal_and_buckling/run.py">run.py</a></div>
+        <div class="links"><a href="https://github.com/Shahroz657/portfolio/tree/main/projects/03_modal_and_buckling">README and data</a><a href="https://github.com/Shahroz657/portfolio/blob/main/projects/03_modal_and_buckling/run.py">run.py</a></div>
       </div>
       <figure>
         <img src="assets/figures/03_buckling_modes.png" alt="Four buckling mode shapes of the fixed-free column compared with the closed-form cosine shapes" loading="lazy">
@@ -291,7 +367,7 @@
           <dt>Result</dt><dd>Centre-line temperature within 0.014 °C of theory everywhere, tip within 0.001 °C, heat rate within 0.22 % as printed and 0.015 % once the reaction is corrected. Tracing the balance node by node showed that CalculiX's printed base flux omits the film loss of the first element ring, an order-h effect that explains its first-order convergence. Adding 20 mm of fin buys less than 5 % beyond 108 mm.</dd>
           <dt>Checks</dt><dd><span class="checks">9 of 9 pass</span> · energy balance closed to 9 × 10⁻⁵ %</dd>
         </dl>
-        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/04_pin_fin_heat_transfer">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/04_pin_fin_heat_transfer/run.py">run.py</a></div>
+        <div class="links"><a href="https://github.com/Shahroz657/portfolio/tree/main/projects/04_pin_fin_heat_transfer">README and data</a><a href="https://github.com/Shahroz657/portfolio/blob/main/projects/04_pin_fin_heat_transfer/run.py">run.py</a></div>
       </div>
       <figure>
         <img src="assets/figures/04_length_sweep.png" alt="Fin heat rate and fin efficiency versus fin length, FE points on the analytic curves" loading="lazy">
@@ -310,7 +386,7 @@
           <dt>Result</dt><dd>Optimum t = 7.19 mm, R = 10 mm: 0.509 kg against 0.697 kg for the thick-plate baseline, 27 % lighter, safety factor 2.56 and 0.590 mm verified by FE (surrogate said 2.51 and 0.600). Fillet stress converged to 0.8 %; the fixed-edge stress grew 21 % over the same series and is excluded as the singularity it is.</dd>
           <dt>Checks</dt><dd><span class="checks">5 of 5 pass</span> · 41 solver runs</dd>
         </dl>
-        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/05_bracket_design_optimization">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/05_bracket_design_optimization/bracket.py">bracket.py</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/05_bracket_design_optimization/run.py">run.py</a></div>
+        <div class="links"><a href="https://github.com/Shahroz657/portfolio/tree/main/projects/05_bracket_design_optimization">README and data</a><a href="https://github.com/Shahroz657/portfolio/blob/main/projects/05_bracket_design_optimization/bracket.py">bracket.py</a><a href="https://github.com/Shahroz657/portfolio/blob/main/projects/05_bracket_design_optimization/run.py">run.py</a></div>
       </div>
       <figure>
         <img src="assets/figures/05_design_space.png" alt="Design space contour of mass over thickness and fillet radius with the safety-factor and deflection constraint boundaries and the optimum" loading="lazy">
@@ -329,7 +405,7 @@
           <dt>Result</dt><dd>Deflection 2 × 10⁶ times too small (units × element stiffness); reported maximum rises 62 % under refinement because it sits on a singular edge; the real safety factor is 1.83 on yield. Seven of eight checks fail; equilibrium passes for every wrong mesh too.</dd>
           <dt>Checks</dt><dd><span class="checks fail">7 of 8 fail on the AI solution</span> · reference model agrees with theory to 0.0 % (stress) and 0.4 % (deflection)</dd>
         </dl>
-        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/06_ai_solution_review/REVIEW.md">Written review</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/06_ai_solution_review">README and data</a></div>
+        <div class="links"><a href="https://github.com/Shahroz657/portfolio/blob/main/projects/06_ai_solution_review/REVIEW.md">Written review</a><a href="https://github.com/Shahroz657/portfolio/tree/main/projects/06_ai_solution_review">README and data</a></div>
       </div>
       <figure>
         <img src="assets/figures/06_singularity.png" alt="Stress at three locations of the AI model versus element size" loading="lazy">
@@ -348,7 +424,7 @@
           <dt>Result</dt><dd>1082.5 cycles per block, identical to the reference in every 10 MPa bin; every corrected amplitude sits below the endurance limit (margin 1.57 to 1.87), and on the extended Basquin line the four corrections span a factor of 5.05 in life.</dd>
           <dt>Checks</dt><dd><span class="checks">9 of 9 pass</span></dd>
         </dl>
-        <div class="links"><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/tree/main/projects/07_fatigue_life_estimation">README and data</a><a href="https://github.com/Shahroz657/computational-mechanics-portfolio/blob/main/projects/07_fatigue_life_estimation/fatigue.py">fatigue.py</a></div>
+        <div class="links"><a href="https://github.com/Shahroz657/portfolio/tree/main/projects/07_fatigue_life_estimation">README and data</a><a href="https://github.com/Shahroz657/portfolio/blob/main/projects/07_fatigue_life_estimation/fatigue.py">fatigue.py</a></div>
       </div>
       <figure>
         <img src="assets/figures/07_rainflow_matrix.png" alt="Rainflow matrix of cycle range against cycle mean stress" loading="lazy">
@@ -402,25 +478,25 @@
   <section id="about">
     <div class="section-head">
       <span class="eyebrow">Background</span>
-      <h2>Where the judgement comes from</h2>
+      <h2>Training, recognition and what comes next</h2>
     </div>
     <div class="bio">
       <dl>
-        <dt>Degree</dt><dd>B.Sc. Mechanical Engineering, National University of Sciences and Technology (NUST), Islamabad, 2024. <span class="sub">Thesis: environmental ageing of hybrid composites, ASTM D7264 / D2344 testing of 72 laminates.</span></dd>
-        <dt>Further</dt><dd>MIT Emerging Talent certificate in computer and data science, 2025. <span class="sub">Stanford Machine Learning specialisation; Imperial College Mathematics for Machine Learning.</span></dd>
-        <dt>Standards</dt><dd>ASTM, ASME, ISO, EN and API in test, design and evaluation work; GD&amp;T, FMEA, tolerance analysis.</dd>
+        <dt>Degree</dt><dd>B.E. Mechanical Engineering, National University of Sciences and Technology (NUST), 2024. <span class="sub">Thesis on environmental aging of hybrid composites; coursework in finite-element analysis, machine learning, numerical methods, mechanics of materials and manufacturing.</span></dd>
+        <dt>Further</dt><dd>MIT Emerging Talent certificate in computer and data science, 2025. <span class="sub">Selected from about 8,700 applicants; MITx 6.0001 and 6.0002, Universal AI modules, collaborative data-science project. Stanford Machine Learning specialization; Imperial College Mathematics for Machine Learning.</span></dd>
+        <dt>Honors</dt><dd>MIT Emerging Talent (about 2 % acceptance); top 6 worldwide, AI for Connectivity Hackathon; Stanford Code in Place 2024; Harvard CS50 Puzzle Day 2025, 9 of 9; Aspire Leaders Program 2024; UN Millennium Fellowship 2024.</dd>
       </dl>
       <dl>
-        <dt>Research</dt><dd>Independent extension of the thesis, 2026. <span class="sub">Competing-process model of hygrothermal ageing in epoxy laminates: Fickian and Langmuir transport, post-cure, plasticization and damage, global sensitivity and sparse-data identifiability.</span></dd>
+        <dt>Next</dt><dd>Seeking a funded PhD position starting Spring or Fall 2027 in composite durability, mechanics of materials, or physics-based and data-driven modelling of engineering systems. <span class="sub"><a href="cv/Shahroz_CV.pdf">CV</a> · muhammadshahroz657@gmail.com</span></dd>
         <dt>Internships</dt><dd>DTnEC, 2023 to 2024: digital twin of pipeline design, ASME design calculations, Python and API workflows. <span class="sub">CEME Centre for Research and Innovation, 2023: CAD and FEA for an electric-vehicle conversion.</span></dd>
-        <dt>AI data</dt><dd>Engineering evaluation tasks and reviews for micro1, Mercor and Turing since 2024. <span class="sub">Tasks grounded in standards, reasoning reviews of fatigue, stiffness and manufacturability trade-offs, team lead for engineering evaluation at Mercor.</span></dd>
+        <dt>Alongside</dt><dd>Part-time technical researcher designing engineering evaluation tasks for AI-training teams since 2024 (micro1; earlier Mercor and Turing). <span class="sub">Tasks grounded in ASTM, ISO and ASME standards; reviews of CAD, schematics and technical reasoning.</span></dd>
       </dl>
     </div>
   </section>
 
   <footer>
-    <div>Every figure on this page is written by a script in the repository; the quick studies are re-run in GitHub Actions on every push.</div>
-    <div class="mono">MIT licence · <a href="https://github.com/Shahroz657/computational-mechanics-portfolio">github.com/Shahroz657/computational-mechanics-portfolio</a></div>
+    <div>Research figures come from the thesis report, the model repository and the manuscript; simulation figures are written by scripts in this repository and re-run in GitHub Actions on every push.</div>
+    <div class="mono">MIT licence · <a href="https://github.com/Shahroz657/portfolio">github.com/Shahroz657/portfolio</a></div>
   </footer>
 
 </div>
