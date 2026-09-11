@@ -5,7 +5,8 @@
 [![site](https://img.shields.io/badge/portfolio-site-1f5fb4.svg)](https://shahroz657.github.io/portfolio/)
 
 Mechanical engineering graduate (NUST, 2024) preparing for doctoral research in mechanics of
-materials, computational mechanics, scientific machine learning and digital twins. This repository holds the
+materials, computational mechanics, scientific machine learning and digital twins, and in human-centered
+AI systems and their evaluation. This repository holds the
 portfolio site and the scripted finite-element studies; the research work is summarised below with
 links to its reports and code. Site: **https://shahroz657.github.io/portfolio/**
 
@@ -53,6 +54,32 @@ SARIMAX, STL baselines and XGBoost tuned by grid search, scored by MSE and dynam
 ARIMA(0,1,0) scored best (MSE 3.7e-4, DTW 1.19), about 30 % lower error than the alternatives: the
 series behaves like a random walk with strong winter seasonality.
 [Manuscript](https://docs.google.com/document/d/1TF4qh9-M5R43Pwvi0iUeYt-q1BlmLZnx/edit).
+
+## Applied AI
+
+### A1 · Evaluating frontier models (2024 to present)
+
+Part-time on AI evaluation teams. micro1 (2025 to present): expert-level engineering tasks with
+rubric-graded reference solutions that benchmark frontier language models, grounded in ASTM, ISO and
+ASME standards. Mercor (2026): led about 100 reviewers evaluating models on schematics and scientific
+images, with calibration and quality control. Turing (2024 to 2025): multimodal model evaluation,
+including adversarial prompts. Under NDA, so described rather than shown.
+
+### A2 · SereniMind, a mental-health support chatbot (February 2025)
+
+Team of five at the lablab.ai "Fall in Love with DeepSeek" hackathon: conversation memory, per-user
+history, authentication and crisis handling, with deepseek-r1 served through Ollama behind a FastAPI
+backend and a React front end. Built to encourage self-help and hand off to professional help, not
+replace it. [Project page](https://lablab.ai/event/fall-in-love-with-deepseek/robinhood/serenimind) ·
+[Code](https://github.com/MateehUllah/SereniMind)
+
+### A3 · Connectivity demand for schools and hospitals (2025)
+
+AI for Connectivity Hackathon, top 6 worldwide: machine-learning models and a Flask API predicting
+connectivity demand from World Bank education statistics and a geocoded database of sub-Saharan public
+hospitals, with clustering to place new facilities.
+[Code](https://github.com/Shahroz657/ai-connectivity-healthcare-education) ·
+[Event](https://lablab.ai/event/ai-for-connectivity-hackathon/robinhood/enhancing-infrastructure-and-accessibility)
 
 ## Simulation studies
 

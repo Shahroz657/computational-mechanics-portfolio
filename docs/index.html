@@ -189,6 +189,7 @@
   <nav class="sitenav" aria-label="sections">
     <a class="brand" href="#top">Muhammad Shahroz</a>
     <a href="#research">Research</a>
+    <a href="#ai">AI</a>
     <a href="#projects">Simulation</a>
     <a href="#method">Method</a>
     <a href="#cad">CAD</a>
@@ -200,10 +201,10 @@
     <div class="tb-top">
       <div class="tb-name">
         <h1>Muhammad Shahroz</h1>
-        <p>Mechanical engineering graduate preparing for doctoral research where mechanics of materials, computational modelling and machine learning meet.</p>
+        <p>Mechanical engineering graduate preparing for doctoral research where engineering, measurement and machine learning meet: materials that degrade, systems that need monitoring, and AI tools that must be evaluated before people rely on them.</p>
       </div>
       <div class="tb-title">
-        <div class="big">Research portfolio: experiments, physics-based models and machine learning for materials and engineering systems</div>
+        <div class="big">Research portfolio: experiments, physics-based models, machine learning and language-model systems for materials, engineering systems and people at work</div>
         <nav class="tb-links" aria-label="links">
           <a href="cv/Shahroz_CV.pdf">CV (PDF)</a>
           <a href="https://github.com/Shahroz657">GitHub</a>
@@ -216,7 +217,7 @@
       <div><span class="eyebrow">Degree</span><span class="val">B.E. Mechanical Engineering, NUST, 2024</span></div>
       <div><span class="eyebrow">Thesis</span><span class="val">Environmental aging of hybrid composites</span></div>
       <div><span class="eyebrow">Further study</span><span class="val">MIT Emerging Talent, computer and data science, 2025</span></div>
-      <div><span class="eyebrow">Interests</span><span class="val">Mechanics of materials · computational mechanics · scientific machine learning · digital twins</span></div>
+      <div><span class="eyebrow">Interests</span><span class="val">Mechanics of materials · computational modelling · scientific machine learning · digital twins · human-centered AI and its evaluation</span></div>
       <div><span class="eyebrow">Seeking</span><span class="val">PhD position, Spring or Fall 2027</span></div>
       <div><span class="eyebrow">Updated</span><span class="val">2026-09</span></div>
     </div>
@@ -224,7 +225,7 @@
 
   <section id="intro">
     <p class="lede">For my thesis I measured how basalt, carbon and hybrid epoxy laminates lose strength in warm salt water, and built the aging rigs when the lab had none. The strength histories were not simple: carbon laminates got stronger before they got weaker. In 2026 I wrote a model of the competing processes that can produce that behaviour and tested what sparse data can identify.</p>
-    <p class="lede">Alongside, I have forecast pollutant concentrations from twenty years of atmospheric data and written finite-element studies that are checked against closed-form solutions. Together these point to where I want to work: computational mechanics, surrogate and physics-informed models with quantified uncertainty, and digital twins that connect measurements to predictions, with materials durability as one application among several. Every number on this page traces to a report, a data table or a script.</p>
+    <p class="lede">Alongside, I have forecast pollutant concentrations from twenty years of atmospheric data, written finite-element studies that are checked against closed-form solutions, and worked on the other side of machine learning: evaluating frontier language and multimodal models, writing the rubric-graded tasks that grade them, and building a mental-health support chatbot with a team. Together these point to where I want to work: computational mechanics, surrogate and physics-informed models with quantified uncertainty, digital twins that connect measurements to predictions, and AI systems that support people at work and are evaluated with the same rigor. Every number on this page traces to a report, a data table or a script.</p>
 
     <div class="three">
       <div>
@@ -327,6 +328,29 @@
         <figcaption>Monthly means of PM1, PM10 and PM2.5 over 2003 to 2022 with their spread: concentrations roughly triple between summer and the November smog season.</figcaption>
       </figure>
     </article>
+  </section>
+
+  <section id="ai">
+    <div class="section-head">
+      <span class="eyebrow">Applied AI</span>
+      <h2>Language models: building with them and evaluating them</h2>
+    </div>
+    <div class="three">
+      <div>
+        <h3>A1 · Evaluating frontier models</h3>
+        <p>Part-time on AI evaluation teams since 2024. At micro1 (2025 to present) I design expert-level engineering tasks with rubric-graded reference solutions that benchmark frontier language models, grounded in ASTM, ISO and ASME standards. At Mercor (2026) I led about 100 reviewers evaluating models on schematics and scientific images, running calibration and quality control. At Turing (2024 to 2025) I evaluated multimodal model outputs, including adversarial prompts. This work is under NDA, so it is described rather than shown.</p>
+      </div>
+      <div>
+        <h3>A2 · SereniMind, a mental-health support chatbot</h3>
+        <p>Team of five at the lablab.ai "Fall in Love with DeepSeek" hackathon, February 2025: conversation memory, per-user history, authentication and crisis handling, with deepseek-r1 served through Ollama behind a FastAPI backend and a React front end. Built to encourage self-help and hand off to professional help, not replace it. Its lesson shaped the work above: a model can sound warm and still answer unsafely, and keyword crisis rules are brittle.</p>
+        <div class="links"><a href="https://lablab.ai/event/fall-in-love-with-deepseek/robinhood/serenimind">Project page</a><a href="https://github.com/MateehUllah/SereniMind">Code</a></div>
+      </div>
+      <div>
+        <h3>A3 · Connectivity demand for schools and hospitals</h3>
+        <p>AI for Connectivity Hackathon, top 6 worldwide: machine-learning models and a Flask API that predict connectivity demand from World Bank education statistics and a geocoded database of sub-Saharan public hospitals, with clustering to place new facilities.</p>
+        <div class="links"><a href="https://github.com/Shahroz657/ai-connectivity-healthcare-education">Code</a><a href="https://lablab.ai/event/ai-for-connectivity-hackathon/robinhood/enhancing-infrastructure-and-accessibility">Event</a></div>
+      </div>
+    </div>
   </section>
 
   <section id="projects">
@@ -531,9 +555,9 @@
         <dt>Honors</dt><dd>MIT Emerging Talent (about 2 % acceptance); top 6 worldwide, AI for Connectivity Hackathon; Stanford Code in Place 2024; Harvard CS50 Puzzle Day 2025, 9 of 9; Aspire Leaders Program 2024; UN Millennium Fellowship 2024.</dd>
       </dl>
       <dl>
-        <dt>Next</dt><dd>Seeking a funded PhD position starting Spring or Fall 2027 in mechanics of materials, computational mechanics, scientific machine learning (surrogate and physics-informed models, uncertainty quantification), or digital twins and data-driven monitoring of engineering systems. <span class="sub"><a href="cv/Shahroz_CV.pdf">CV</a> · muhammadshahroz657@gmail.com</span></dd>
+        <dt>Next</dt><dd>Seeking a funded PhD position starting Spring or Fall 2027 in mechanics of materials, computational mechanics, scientific machine learning (surrogate and physics-informed models, uncertainty quantification), digital twins and data-driven monitoring of engineering systems, or human-centered AI for health and safety at work, including language-model support tools and their evaluation. <span class="sub"><a href="cv/Shahroz_CV.pdf">CV</a> · muhammadshahroz657@gmail.com</span></dd>
         <dt>Internships</dt><dd>DTnEC, 2023 to 2024: digital twin of pipeline design, ASME design calculations, Python and API workflows. <span class="sub">CEME Centre for Research and Innovation, 2023: CAD and FEA for an electric-vehicle conversion.</span></dd>
-        <dt>Alongside</dt><dd>Part-time technical researcher designing engineering evaluation tasks for AI-training teams since 2024 (micro1; earlier Mercor and Turing). <span class="sub">Tasks grounded in ASTM, ISO and ASME standards; reviews of CAD, schematics and technical reasoning.</span></dd>
+        <dt>Alongside</dt><dd>Part-time on AI evaluation teams since 2024: micro1 (expert engineering tasks with rubric-graded reference solutions, 2025 to present), Mercor (led about 100 reviewers on scientific-image evaluation, 2026) and Turing (multimodal model evaluation, 2024 to 2025). <span class="sub">Tasks grounded in ASTM, ISO and ASME standards; reviews of CAD, schematics and technical reasoning.</span></dd>
       </dl>
     </div>
   </section>
