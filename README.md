@@ -5,8 +5,7 @@
 [![site](https://img.shields.io/badge/portfolio-site-1f5fb4.svg)](https://shahroz657.github.io/portfolio/)
 
 Mechanical engineering graduate (NUST, 2024) preparing for doctoral research in mechanics of
-materials, computational mechanics, scientific machine learning and digital twins, and in human-centered
-AI systems and their evaluation. This repository holds the
+materials, computational mechanics, scientific machine learning and digital twins. This repository holds the
 portfolio site and the scripted finite-element studies; the research work is summarised below with
 links to its reports and code. Site: **https://shahroz657.github.io/portfolio/**
 
@@ -54,34 +53,6 @@ SARIMAX, STL baselines and XGBoost tuned by grid search, scored by MSE and dynam
 ARIMA(0,1,0) scored best (MSE 3.7e-4, DTW 1.19), about 30 % lower error than the alternatives: the
 series behaves like a random walk with strong winter seasonality.
 [Manuscript](https://docs.google.com/document/d/1TF4qh9-M5R43Pwvi0iUeYt-q1BlmLZnx/edit).
-
-## Applied AI
-
-### A1 · Evaluating frontier models (2024 to present)
-
-Part-time on AI evaluation teams. micro1 (2025 to present): expert-level engineering tasks with
-rubric-graded reference solutions that benchmark frontier language models, grounded in ASTM, ISO and
-ASME standards. Mercor (2026): led about 100 reviewers evaluating models on schematics and scientific
-images, with calibration and quality control. Turing (2024 to 2025): multimodal model evaluation,
-including adversarial prompts. Under NDA, so described rather than shown.
-
-### A2 · SereniMind, a mental-health support chatbot (February 2025)
-
-Team of five at the lablab.ai "Fall in Love with DeepSeek" hackathon: conversation memory, per-user
-history, authentication and crisis handling, with deepseek-r1 served through Ollama behind a FastAPI
-backend and a React front end. Built to encourage self-help and hand off to professional help, not
-replace it. [Project page](https://lablab.ai/event/fall-in-love-with-deepseek/robinhood/serenimind) ·
-[Code](https://github.com/MateehUllah/SereniMind)
-
-### A3 · Sensing rigs with real-time logging (2023 to 2024)
-
-Two aging chambers built for the thesis when the lab had none: Arduino and ESP32 controllers, DHT22
-sensors, a PID-controlled heater and real-time logging to Firebase, with a SolidWorks model of the
-marine rig. The same pipeline as a wearable study of worker health, which is where I want to take it
-next. Earlier, a 5-DOF motion-controlled robotic arm on a mobile platform with 3D-printed structure,
-sensors and Bluetooth control. Also: connectivity-demand prediction for schools and hospitals, AI for
-Connectivity Hackathon, top 6 worldwide
-([code](https://github.com/Shahroz657/ai-connectivity-healthcare-education)).
 
 ## Simulation studies
 
