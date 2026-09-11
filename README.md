@@ -73,13 +73,15 @@ backend and a React front end. Built to encourage self-help and hand off to prof
 replace it. [Project page](https://lablab.ai/event/fall-in-love-with-deepseek/robinhood/serenimind) ·
 [Code](https://github.com/MateehUllah/SereniMind)
 
-### A3 · Connectivity demand for schools and hospitals (2025)
+### A3 · Sensing rigs with real-time logging (2023 to 2024)
 
-AI for Connectivity Hackathon, top 6 worldwide: machine-learning models and a Flask API predicting
-connectivity demand from World Bank education statistics and a geocoded database of sub-Saharan public
-hospitals, with clustering to place new facilities.
-[Code](https://github.com/Shahroz657/ai-connectivity-healthcare-education) ·
-[Event](https://lablab.ai/event/ai-for-connectivity-hackathon/robinhood/enhancing-infrastructure-and-accessibility)
+Two aging chambers built for the thesis when the lab had none: Arduino and ESP32 controllers, DHT22
+sensors, a PID-controlled heater and real-time logging to Firebase, with a SolidWorks model of the
+marine rig. The same pipeline as a wearable study of worker health, which is where I want to take it
+next. Earlier, a 5-DOF motion-controlled robotic arm on a mobile platform with 3D-printed structure,
+sensors and Bluetooth control. Also: connectivity-demand prediction for schools and hospitals, AI for
+Connectivity Hackathon, top 6 worldwide
+([code](https://github.com/Shahroz657/ai-connectivity-healthcare-education)).
 
 ## Simulation studies
 
